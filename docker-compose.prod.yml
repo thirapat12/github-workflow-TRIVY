@@ -1,8 +1,8 @@
 version: '3'
 services:
-  maradorsuite:
+  maradorsuite_prod:
     build:
       context: .
       dockerfile: dockers/builds/Dockerfile
     ports:
-    - 25000:80
+     - 25000:80
