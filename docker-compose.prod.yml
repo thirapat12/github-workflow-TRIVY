@@ -1,6 +1,6 @@
 version: '3'
 services:
-  maradorsuiteprod:
+  maradorsuite_prod:
     build:
       context: .
       dockerfile: dockers/builds/Dockerfile
