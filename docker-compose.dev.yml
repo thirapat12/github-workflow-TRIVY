@@ -5,4 +5,4 @@ services:
       context: .
       dockerfile: dockers/builds/Dockerfile
     ports:
-    - 8000:80
+    - 4200:80
