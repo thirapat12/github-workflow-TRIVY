@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-main-page',
@@ -12,38 +12,38 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
-      if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') &&
-        location.hostname === this.hostname) {
-        let e = $(this.hash);
-        if (e = e.length ? e : $('[name=' + this.hash.slice(1) + ']'), e.length) {
-          return $('html, body')
-            .animate({scrollTop: e.offset().top - 54}, 1e3, 'easeInOutExpo');
-        }
-      }
-    });
+    // $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+    //   if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') &&
+    //     location.hostname === this.hostname) {
+    //     let e = $(this.hash);
+    //     if (e = e.length ? e : $('[name=' + this.hash.slice(1) + ']'), e.length) {
+    //       return $('html, body').animate({scrollTop: e.offset().top - 54}, 1e3, 'easeInOutExpo');
+    //     }
+    //   }
+    // });
 
-    $('.js-scroll-trigger').click(function () {
-      $('.navbar-collapse').collapse('hide');
+    window.$('.js-scroll-trigger').click(function () {
+      window.$('.navbar-collapse').collapse('hide');
     });
 
     const event = function () {
-      if ($('#mainNav').offset().top > 100) {
-        $('#mainNav').addClass('navbar-shrink');
+      const mainNav = window.$('#mainNav');
+      if (mainNav.offset().top > 100) {
+        mainNav.addClass('navbar-shrink');
       } else {
-        $('#mainNav').removeClass('navbar-shrink');
+        mainNav.removeClass('navbar-shrink');
       }
     };
 
     event();
 
-    $(window).scroll(event);
-    $('.portfolio-modal').on('show.bs.modal', function () {
-      $('.navbar').addClass('d-none');
+    window.$(window).scroll(event);
+    window.$('.portfolio-modal').on('show.bs.modal', function () {
+      window.$('.navbar').addClass('d-none');
     });
 
-    $('.portfolio-modal').on('hidden.bs.modal', function () {
-      $('.navbar').removeClass('d-none');
+    window.$('.portfolio-modal').on('hidden.bs.modal', function () {
+      window.$('.navbar').removeClass('d-none');
     });
   }
 
