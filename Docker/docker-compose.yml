@@ -1,0 +1,9 @@
+version: '3'
+services:
+  matadorsuite-web:
+    image: vpcpqmregistry.azurecr.io/matadorsuite-web${TAG}
+    build:
+      context: ../
+      dockerfile: Docker/Dockerfile
+    ports:
+     - 15000:80

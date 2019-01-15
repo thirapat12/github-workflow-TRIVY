@@ -1,9 +1,0 @@
-version: '3'
-services:
-  matadorsuite_prod:
-    build:
-      context: .
-      dockerfile: dockers/builds/Dockerfile
-    container_name: matadorsuite_www_prod
-    ports:
-     - 25000:80
