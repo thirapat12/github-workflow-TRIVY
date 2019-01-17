@@ -93,7 +93,9 @@ img::-moz-selection {
 }
 
 #mainNav {
-  background-color: #212529
+  // background-color: #b3d043
+  background-color: rgba(179, 208, 67,0.7);
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
 }
 
 #mainNav .navbar-toggler {
@@ -108,12 +110,12 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-brand {
-  color: #8dc63f;
+  color: #fff;
   font-family: Kaushan Script, Helvetica Neue, Helvetica, Arial, cursive
 }
 
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-  color: #72a230
+  color: #fff
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
@@ -126,16 +128,20 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #8dc63f
+  // color: #8dc63f
+  color: #fff;
+  cursor: pointer;
 }
 
 @media (min-width: 992px) {
   #mainNav {
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     transition: padding-top .3s, padding-bottom .3s;
     border: none;
-    background-color: rgba(33, 37, 37, .5)
+    // background-color: #b3d043;
+    background-color: rgba(179, 208, 67,0.7)
+    // background-color: rgba(33, 37, 37, .5)
   }
 
   #mainNav .navbar-brand {
@@ -150,7 +156,8 @@ img::-moz-selection {
   #mainNav.navbar-shrink {
     padding-top: 0;
     padding-bottom: 0;
-    background-color: #212529
+    background-color: #b3d043;
+    // background-color: #212529
   }
 
   #mainNav.navbar-shrink .navbar-brand {
