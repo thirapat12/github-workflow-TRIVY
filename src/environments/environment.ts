@@ -16,6 +16,7 @@ export const environment = {
     service: 'http://pop.mts.myaisdc.com/service',
     admin: 'http://pop.mts.myaisdc.com/admin',
     product: 'http://pop.mts.myaisdc.com/project',
+    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
   },
   git: {
     web: 'https://git.matadorsuite.com/',
