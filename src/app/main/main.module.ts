@@ -7,17 +7,11 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { PopSigninIdsComponent } from 'src/app/main/layouts/signin-ids/signin-ids.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
     ShareModule,
-    CommonModule,
-    BrowserModule,
-    // SigninIdsModule,
-    // LoginModule
   ],
   declarations: [
     HeaderComponent,

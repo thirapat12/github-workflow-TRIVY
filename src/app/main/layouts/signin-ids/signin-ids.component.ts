@@ -16,19 +16,10 @@ export class PopSigninIdsComponent implements OnInit {
     constructor(
         private router: Router,
         private cookie: CookieService,
-        private themeConfig: PopConfigService,
         private authService: AuthService,
 
     ) {
         this.hashUrl = window.location.hash;
-        this.themeConfig.setSettings({
-            layout: {
-                navigation: 'none',
-                toolbar   : 'none',
-                footer    : 'none'
-            }
-        });
-
     }
     ngOnInit() {
         if (this.hashUrl && this.hashUrl !== '') {

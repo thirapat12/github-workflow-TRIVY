@@ -9,10 +9,6 @@ export class PopConfigService {
     defaultSettings: any;
     onSettingsChanged: BehaviorSubject<any>;
 
-    /**
-     * @param router
-     * @param platform
-     */
     constructor(
         private router: Router,
         public platform: Platform
@@ -58,10 +54,6 @@ export class PopConfigService {
         this.onSettingsChanged = new BehaviorSubject(this.settings);
     }
 
-    /**
-     * Sets settings
-     * @param settings
-     */
     setSettings(settings) {
         // Set the settings from the given object
         this.settings = Object.assign({}, this.settings, settings);
