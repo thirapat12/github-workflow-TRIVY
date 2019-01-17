@@ -3,7 +3,29 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  matadorsuite: {
+    www: 'https://www.matadorsuite.com',
+  },
+  timesheet: {
+    api: 'http://team-api.mts.myaisdc.com',
+    web: 'http://team.mts.myaisdc.com',
+  },
+  pop: {
+    api: 'http://pop-api.mts.myaisdc.com',
+    service: 'http://pop.mts.myaisdc.com/service',
+    admin: 'http://pop.mts.myaisdc.com/admin',
+    product: 'http://pop.mts.myaisdc.com/project',
+  },
+  git: {
+    web: 'https://git.matadorsuite.com/',
+  },
+  jenkins: {
+    web: ''
+  },
+  xwiki: {
+    web: 'https://wiki.matadorsuite.com/xwiki'
+  }
 };
 
 /*
@@ -13,4 +35,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error';  // Included with Angular CLI.

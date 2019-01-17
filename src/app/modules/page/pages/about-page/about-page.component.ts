@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-about-page',
@@ -7,9 +8,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutPageComponent implements OnInit {
 
-  constructor() { }
+  pages: PageInfo[] = [];
+  pageChunks: any[];
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    this.pages.push(new PageInfo(
+      'Timesheet',
+      'Lorem ipsum dolor sit amet',
+      ['fa', 'fa-stack-1x', 'fa-inverse', 'fa-calendar-alt'],
+      environment.timesheet.web));
+    this.pages.push(new PageInfo(
+      'Wiki',
+      'Lorem ipsum dolor sit amet',
+      ['fab', 'fa-wikipedia-w', 'fa-stack-1x', 'fa-inverse', 'fa-wikipedia-w'],
+      environment.xwiki.web));
+    this.pages.push(new PageInfo(
+      'GitLab',
+      'Lorem ipsum dolor sit amet',
+      ['fab', 'fa-gitlab', 'fa-stack-1x', 'fa-inverse', 'fa-gitlab'],
+      environment.git.web));
+
+    this.pages.push(new PageInfo(
+      'Jenkin',
+      'Lorem ipsum dolor sit amet',
+      ['fab', 'fa-jenkins', 'fa-stack-1x', 'fa-inverse'],
+      'https://jenkins.matadorsuite.com/'));
+    this.pages.push(new PageInfo(
+      'Repo',
+      'Lorem ipsum dolor sit amet',
+      ['fa', 'fa-database', 'fa-stack-1x', 'fa-inverse'],
+      'https://repo.matadorsuite.com/'));
+    this.pages.push(new PageInfo(
+      'issue',
+      'Lorem ipsum dolor sit amet',
+      ['fa', 'fa-bug', 'fa-stack-1x', 'fa-inverse'],
+      'https://issue.matadorsuite.com/'));
+
+    this.pages.push(new PageInfo(
+      'Teabreak',
+      'Lorem ipsum dolor sit amet',
+      ['fa', 'fa-coffee', 'fa-stack-1x', 'fa-inverse'],
+      'https://teabreak.matadorsuite.com'));
+    this.pages.push(new PageInfo(
+      'User',
+      'Lorem ipsum dolor sit amet',
+      ['fa', 'fa-users', 'fa-stack-1x', 'fa-inverse'],
+      'https://users.matadorsuite.com'));
+    this.pages.push(new PageInfo(
+      'Cloud',
+      'Lorem ipsum dolor sit amet',
+      ['fab', 'fa-aws', 'fa-stack-1x', 'fa-inverse'],
+      'https://console.amazon.com'));
+
+    this.pageChunks = this.arrayChunk(this.pages, 3);
+  }
+
+  arrayChunk(inputArray: any[], chunk = 3): any[] {
+    let i: number;
+    let j: number;
+    const chuckArray: any[] = [];
+    let tempArray: any[];
+    for (i = 0, j = inputArray.length; i < j; i += chunk) {
+      tempArray = inputArray.slice(i, i + chunk);
+      chuckArray.push(tempArray);
+    }
+    return chuckArray;
+  }
+
+}
+
+export class PageInfo {
+  title: string;
+  subTitle: string;
+  icon: string[];
+  url: string;
+
+  constructor(title: string, subTitle: string, icon: string[], url: string) {
+    this.title = title;
+    this.subTitle = subTitle;
+    this.icon = icon;
+    this.url = url;
+  }
 }
