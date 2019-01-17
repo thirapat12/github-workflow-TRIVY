@@ -2,12 +2,11 @@ export const environment = {
   production: true,
   matadorsuite: {
     www: 'https://www.matadorsuite.com',
+    portfolio: '/portfolio',
   },
   timesheet: {
-    // api: 'https://clm.matadorsuite.com',
-    // web: 'https://team-api.matadorsuite.com',
-    api: 'http://team-api.mts.myaisdc.com',
-    web: 'http://team.mts.myaisdc.com',
+    api: 'https://team-api.matadorsuite.com',
+    web: '/team',
   },
   pop: {
     api: 'http://pop-api.mts.myaisdc.com',
