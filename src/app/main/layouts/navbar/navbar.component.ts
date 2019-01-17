@@ -37,6 +37,7 @@ export class NavbarComponent implements OnInit {
   }
   onLoginClick() {
     this.router.navigate(['/signin']);
+    console.log('signin');
   }
 
 }

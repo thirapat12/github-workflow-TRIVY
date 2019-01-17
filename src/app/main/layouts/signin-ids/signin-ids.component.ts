@@ -43,6 +43,7 @@ export class PopSigninIdsComponent implements OnInit {
             this.getAccount();
           } else {
             this.authService.signIn();
+            console.log('login signin');
           }
     }
 
@@ -51,11 +52,11 @@ export class PopSigninIdsComponent implements OnInit {
           .subscribe((account) => {
             setTimeout(() => {
               this.authService.afterSignin(account);
-              this.router.navigate(['']);
+              this.router.navigate(['/']);
             }, 3000);
           }, (err) => {
             console.error(err.data || err);
-            this.router.navigate(['']);
+            this.router.navigate(['/']);
           });
       }
 

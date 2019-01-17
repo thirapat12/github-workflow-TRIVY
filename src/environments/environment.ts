@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  local: true,
   matadorsuite: {
     www: 'https://www.matadorsuite.com',
   },
@@ -26,6 +27,11 @@ export const environment = {
   xwiki: {
     web: 'https://wiki.matadorsuite.com/xwiki'
   },
+  authConfig: {
+    clientId: 'client-pop-dev',
+    server: 'http://identity.mts.myaisdc.com',
+    scope: 'email openid profile roles api-pop-dev'
+  }
 };
 
 /*
