@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { environment } from '../../environments/environment';
-import { PopConfigService } from './services/config.service';
+import { RouterModule } from '@angular/router';
+
 import { Platform } from '@angular/cdk/platform';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpInterceptorService } from './interceptors/http-interceptor.service';
 
 @NgModule({
   imports: [
+    CommonModule,
     HttpClientModule,
     RouterModule,
-    OAuthModule.forRoot({
-      resourceServer: {
-        allowedUrls: [`${environment.pop.api}*`],
-        sendAccessToken: true
-      }
-    }),
+    OAuthModule,
   ],
   providers: [
-    Platform,
-    CookieService,
     AuthService,
-    PopConfigService,
+    CookieService,
+    Platform,
+    {
+      useClass: HttpInterceptorService,
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+    }
   ],
   exports: [
     HttpClientModule,

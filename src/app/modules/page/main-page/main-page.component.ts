@@ -28,7 +28,7 @@ export class MainPageComponent implements OnInit {
 
     const event = function () {
       const mainNav = window.$('#mainNav');
-      if (mainNav.offset().top > 100) {
+      if (mainNav && mainNav.offset().top > 100) {
         mainNav.addClass('navbar-shrink');
       } else {
         mainNav.removeClass('navbar-shrink');

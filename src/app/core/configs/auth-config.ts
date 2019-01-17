@@ -1,12 +1,12 @@
-
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 const bases = document.getElementsByTagName('base');
 let baseHref = null;
 if (bases.length > 0) {
-  baseHref = bases[0].href + 'signin';
+  baseHref = bases[0].href + 'auth/signin';
 }
+
 export const authConfig: AuthConfig = {
   /**
    * Config for Server.

@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShareModule } from './core/share.module';
 import { RouterModule, Routes } from '@angular/router';
+import { ShareModule } from './core/share.module';
 import { MainLayoutComponent } from './main/main-layout/main-layout.component';
-import { NavbarComponent } from 'src/app/main/layouts/navbar/navbar.component';
-import { MainModule } from 'src/app/main/main.module';
-import { PopSigninIdsComponent } from 'src/app/main/layouts/signin-ids/signin-ids.component';
 
 const routes: Routes = [
   {
@@ -19,21 +16,13 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'loginids',
-    component: NavbarComponent,
-  },
-  {
-    path: 'signin',
-    component: PopSigninIdsComponent,
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
+
   },
   {
     path: 'error',
-    children: [
-      {
-        path: '',
-        loadChildren: './modules/error/error.module#ErrorModule'
-      },
-    ]
+    loadChildren: './modules/error/error.module#ErrorModule',
   },
   {
     path: '**',
@@ -44,9 +33,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forRoot(routes),
     ShareModule,
-    MainModule,
   ],
   exports: [
     RouterModule,

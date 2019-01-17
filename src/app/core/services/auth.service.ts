@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../../../environments/environment';
 import * as jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AccountModel } from 'src/app/core/services/account-model';
+import { AccountModel } from 'src/app/core/view-models/account-model';
 
 @Injectable()
 export class AuthService {
@@ -18,15 +18,13 @@ export class AuthService {
   onChangeSsoRole: BehaviorSubject<string> = new BehaviorSubject('');
   onChangeRegister: BehaviorSubject<string> = new BehaviorSubject('');
 
-
   private tokenKey = 'timesheet_ids4';
   private storageUserKey = 'username';
 
   constructor(private cookieService: CookieService,
-    private oauthService: OAuthService,
-    private router: Router,
-    private http: HttpClient
-  ) {
+              private oauthService: OAuthService,
+              private router: Router,
+              private http: HttpClient) {
     this.userName = this.cookieService.get('username');
     this.ssoRole = this.cookieService.get('ssoRole');
     this.isRegister = this.cookieService.get('isRegister');
@@ -38,8 +36,9 @@ export class AuthService {
     });
   }
 
-  isAuthenticated(): boolean {
-    return !!this.cookieService.get('username');
+  isAuthentication(): boolean {
+    const token = this.getToken();
+    return token && token !== '';
   }
 
   isAdmin(): boolean {
@@ -49,7 +48,6 @@ export class AuthService {
   isStakeholder(): boolean {
     return this.cookieService.get('ssoRole') === 'Stakeholder';
   }
-
 
   getAccountInfo(): Observable<AccountModel> {
     return this.http.get<AccountModel>(environment.pop.api + '/api/Account');
@@ -61,15 +59,17 @@ export class AuthService {
 
   afterSignin(account: AccountModel) {
     localStorage.setItem('isRegister', account.IsRegister.toString());
+
     this.cookieService.set('UserProfile', account.User);
     this.cookieService.set('username', account.Username);
     this.cookieService.set('ssoRole', account.User.SsoRole);
     this.roleLocal = account.User.SsoRole;
+
     localStorage.setItem('ssoRole', account.User.SsoRole);
+
     if (account.User.SsoRole === null && !environment.production) {
       this.cookieService.set('ssoRole', 'Administrator');
       localStorage.setItem('ssoRole', 'Administrator');
-
       this.roleLocal = 'Administrator';
     } else if (account.User.SsoRole === null) {
       this.cookieService.set('ssoRole', 'Stakeholder');
@@ -77,11 +77,11 @@ export class AuthService {
       this.roleLocal = 'Stakeholder';
     }
 
-    if (account.IsRegister) {
-      this.router.navigate(['home']);
-    } else {
-      this.router.navigate(['/register']);
-    }
+    // if (account.IsRegister) {
+    //   this.router.navigate(['home']);
+    // } else {
+    //   this.router.navigate(['/register']);
+    // }
 
     this.onChangeUsername.next(account.Username);
     this.onChangeSsoRole.next(this.roleLocal);
@@ -111,13 +111,7 @@ export class AuthService {
     return token;
   }
 
-  getUserName(): string | null {
-    const userName = localStorage.getItem('username');
-    return userName;
-  }
-
-  isAuthentication(): boolean {
-    const token = this.getToken();
-    return token && token !== '';
+  getUserName(): string {
+    return localStorage.getItem('username') || '';
   }
 }
