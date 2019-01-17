@@ -25,7 +25,7 @@ export const environment = {
   },
   xwiki: {
     web: 'https://wiki.matadorsuite.com/xwiki'
-  }
+  },
 };
 
 /*
