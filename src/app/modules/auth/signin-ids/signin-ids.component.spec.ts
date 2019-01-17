@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SigninIdsComponent } from './signin-ids.component';
+import { ShareTestingModule } from '../../../core/share-testing.module';
 
 describe('AuthLayoutComponent', () => {
   let component: SigninIdsComponent;
@@ -7,6 +8,7 @@ describe('AuthLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ShareTestingModule],
       declarations: [SigninIdsComponent]
     })
       .compileComponents();

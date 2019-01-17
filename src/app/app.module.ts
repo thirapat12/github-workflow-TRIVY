@@ -25,8 +25,7 @@ import { environment } from '../environments/environment';
       }
     }),
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [
     AppComponent
   ]

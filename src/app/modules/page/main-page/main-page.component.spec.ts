@@ -1,6 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ShareTestingModule } from '../../../core/share-testing.module';
+
 import { MainPageComponent } from './main-page.component';
+import { ProductPageComponent } from '../pages/product-page/product-page.component';
+import { ServicePageComponent } from '../pages/service-page/service-page.component';
+import { PortfolioPageComponent } from '../pages/portfolio-page/portfolio-page.component';
+import { TeamPageComponent } from '../pages/team-page/team-page.component';
+import { AboutPageComponent } from '../pages/about-page/about-page.component';
+import { ContactPageComponent } from '../pages/contact-page/contact-page.component';
+
+declare global {
+  interface Window {
+    jQuery: any;
+    $: any;
+  }
+}
+
+window.$ = require('jquery');
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
@@ -8,9 +25,18 @@ describe('MainPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainPageComponent ]
+      imports: [ShareTestingModule],
+      declarations: [
+        MainPageComponent,
+        ProductPageComponent,
+        ServicePageComponent,
+        PortfolioPageComponent,
+        TeamPageComponent,
+        AboutPageComponent,
+        ContactPageComponent,
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

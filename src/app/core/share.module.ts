@@ -33,4 +33,5 @@ import { HttpInterceptorService } from './interceptors/http-interceptor.service'
   ],
   declarations: []
 })
-export class ShareModule { }
+export class ShareModule {
+}

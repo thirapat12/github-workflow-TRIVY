@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-main-page',
@@ -12,16 +11,6 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
-    //   if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') &&
-    //     location.hostname === this.hostname) {
-    //     let e = $(this.hash);
-    //     if (e = e.length ? e : $('[name=' + this.hash.slice(1) + ']'), e.length) {
-    //       return $('html, body').animate({scrollTop: e.offset().top - 54}, 1e3, 'easeInOutExpo');
-    //     }
-    //   }
-    // });
-
     window.$('.js-scroll-trigger').click(function () {
       window.$('.navbar-collapse').collapse('hide');
     });
@@ -30,7 +19,7 @@ export class MainPageComponent implements OnInit {
       const mainNav = window.$('#mainNav');
       if (mainNav && mainNav.offset().top > 100) {
         mainNav.addClass('navbar-shrink');
-      } else {
+      } else if (mainNav) {
         mainNav.removeClass('navbar-shrink');
       }
     };

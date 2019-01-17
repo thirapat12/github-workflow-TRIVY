@@ -1,19 +1,21 @@
 @import '../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // @import "src/app/core/scss/pop";
 :host {
-    .green{
-        color: #b3d043;
-    }
-    .notfound{
-        text-align: center;
-        color: #999;
-        letter-spacing: 3px;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-    .pic-box{
-        width: 300px;
-        margin: 20px auto;
-        display: block;
-    }
+  .green {
+    color: #b3d043;
+  }
+
+  .notfound {
+    text-align: center;
+    color: #999;
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .pic-box {
+    width: 300px;
+    margin: 20px auto;
+    display: block;
+  }
 }

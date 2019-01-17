@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicePageComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

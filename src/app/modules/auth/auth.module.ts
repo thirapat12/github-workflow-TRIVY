@@ -34,4 +34,5 @@ const routes: Routes = [
     SigninIdsComponent,
   ]
 })
-export class AuthModule { }
+export class AuthModule {
+}
