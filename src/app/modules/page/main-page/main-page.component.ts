@@ -7,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  event = () => {
+  event() {
     const mainNav = window.$('#mainNav');
     if (mainNav && mainNav.offset() && mainNav.offset().top > 100) {
       mainNav.addClass('navbar-shrink');
     } else if (mainNav) {
       mainNav.removeClass('navbar-shrink');
     }
-  };
+  }
 
   constructor() {
   }
