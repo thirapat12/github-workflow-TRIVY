@@ -7,6 +7,7 @@ export const environment = {
   local: true,
   matadorsuite: {
     www: 'https://www.matadorsuite.com',
+    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
   },
   timesheet: {
     api: 'http://team-api.mts.myaisdc.com',
@@ -17,6 +18,7 @@ export const environment = {
     service: 'http://pop.mts.myaisdc.com/service',
     admin: 'http://pop.mts.myaisdc.com/admin',
     product: 'http://pop.mts.myaisdc.com/project',
+    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
   },
   git: {
     web: 'https://git.matadorsuite.com/',
