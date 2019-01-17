@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   matadorsuite: {
     www: 'https://www.matadorsuite.com',
+    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
   },
   timesheet: {
     api: 'http://team-api.mts.myaisdc.com',
