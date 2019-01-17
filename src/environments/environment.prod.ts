@@ -12,5 +12,14 @@ export const environment = {
     service: 'http://pop.mts.myaisdc.com/service',
     admin: 'http://pop.mts.myaisdc.com/admin',
     product: 'http://pop.mts.myaisdc.com/project',
+  },
+  git: {
+    web: 'https://git.matadorsuite.com/',
+  },
+  jenkins: {
+    web: ''
+  },
+  xwiki: {
+    web: 'https://wiki.matadorsuite.com/xwiki'
   }
 };
