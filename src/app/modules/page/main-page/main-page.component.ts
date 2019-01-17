@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
+  event = () => {
+    const mainNav = window.$('#mainNav');
+    if (mainNav && mainNav.offset() && mainNav.offset().top > 100) {
+      mainNav.addClass('navbar-shrink');
+    } else if (mainNav) {
+      mainNav.removeClass('navbar-shrink');
+    }
+  };
+
   constructor() {
   }
 
@@ -15,22 +24,12 @@ export class MainPageComponent implements OnInit {
       window.$('.navbar-collapse').collapse('hide');
     });
 
-    const event = function () {
-      const mainNav = window.$('#mainNav');
-      if (mainNav && mainNav.offset().top > 100) {
-        mainNav.addClass('navbar-shrink');
-      } else if (mainNav) {
-        mainNav.removeClass('navbar-shrink');
-      }
-    };
-
-    event();
+    this.event();
 
     window.$(window).scroll(event);
     window.$('.portfolio-modal').on('show.bs.modal', function () {
       window.$('.navbar').addClass('d-none');
     });
-
     window.$('.portfolio-modal').on('hidden.bs.modal', function () {
       window.$('.navbar').removeClass('d-none');
     });
