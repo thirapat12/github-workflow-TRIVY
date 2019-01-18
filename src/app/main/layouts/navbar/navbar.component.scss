@@ -16,8 +16,9 @@
 }
 
 .username {
-  color: #fafafa;
-  font-size: 20px;
+  color: #b3d043 !important;
+  font-size: 14px;
+  letter-spacing: 1.5px;
 }
 .username-pic{
   background: transparent;
@@ -45,8 +46,7 @@
       .dropdown-menu{
           &.show {
               margin-top: 4px;
-              padding: 3px 0 0 0;
-              transform: translate3d(-148px, 37px, 0px);
+              transform: translate3d(-80px, 15px, 0px);
           }
       }
       .dropdown-item:hover {
@@ -66,18 +66,12 @@
   }
 
   &.show{
-      background: #fafafa;
-      padding: 3px 0;
-      border-radius: 5px;
-     
-
       &:focus{
           outline: none;
       }
       .dropdown-toggle{
           &:after {
               margin-left: 1px;
-              color: #b3d043;
           }
       }
   }
