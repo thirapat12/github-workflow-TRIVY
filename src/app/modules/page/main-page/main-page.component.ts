@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  event() {
+  constructor() {
+  }
+
+  private static event() {
     const mainNav = window.$('#mainNav');
     if (mainNav && mainNav.offset() && mainNav.offset().top > 100) {
       mainNav.addClass('navbar-shrink');
@@ -16,21 +19,18 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  constructor() {
-  }
-
   ngOnInit() {
-    window.$('.js-scroll-trigger').click(function () {
+    window.$('.js-scroll-trigger').click(() => {
       window.$('.navbar-collapse').collapse('hide');
     });
 
-    this.event();
+    MainPageComponent.event();
 
-    window.$(window).scroll(event);
-    window.$('.portfolio-modal').on('show.bs.modal', function () {
+    window.$(window).scroll(MainPageComponent.event);
+    window.$('.portfolio-modal').on('show.bs.modal', () => {
       window.$('.navbar').addClass('d-none');
     });
-    window.$('.portfolio-modal').on('hidden.bs.modal', function () {
+    window.$('.portfolio-modal').on('hidden.bs.modal', () => {
       window.$('.navbar').removeClass('d-none');
     });
   }

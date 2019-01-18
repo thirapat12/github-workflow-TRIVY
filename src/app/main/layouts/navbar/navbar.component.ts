@@ -17,10 +17,9 @@ export class NavbarComponent implements OnInit {
   logout = false;
   showuser = false;
 
-  constructor(
-    private router: Router,
-    protected cookie: CookieService,
-    private auth: AuthService
+  constructor(private router: Router,
+              protected cookie: CookieService,
+              private auth: AuthService
   ) {
     this.auth.onChangeUsername.subscribe((userName) => {
       this.userName = userName;
