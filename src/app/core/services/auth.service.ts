@@ -12,7 +12,7 @@ import { AccountModel } from 'src/app/core/view-models/account-model';
 export class AuthService {
   private userName: string;
   private ssoRole: string;
-  private isRegister: string;
+  private isRegister_main: string;
   roleLocal;
   onChangeUsername: BehaviorSubject<string> = new BehaviorSubject('');
   onChangeSsoRole: BehaviorSubject<string> = new BehaviorSubject('');
@@ -27,12 +27,12 @@ export class AuthService {
               private http: HttpClient) {
     this.userName = this.cookieService.get('username');
     this.ssoRole = this.cookieService.get('ssoRole');
-    this.isRegister = this.cookieService.get('isRegister');
+    this.isRegister_main = this.cookieService.get('isRegister_main');
 
     setTimeout(() => {
       this.onChangeUsername.next(this.userName);
       this.onChangeSsoRole.next(this.ssoRole);
-      this.onChangeRegister.next(this.isRegister);
+      this.onChangeRegister.next(this.isRegister_main);
     });
   }
 
@@ -58,13 +58,14 @@ export class AuthService {
   }
 
   afterSignin(account: AccountModel) {
-    localStorage.setItem('isRegister', account.IsRegister.toString());
+    localStorage.setItem('isRegister_main', account.IsRegister.toString());
     localStorage.setItem('username',  account.Username);
     localStorage.setItem('ssoRole', account.User.SsoRole);
 
     this.cookieService.set('UserProfile', account.User);
     this.cookieService.set('username', account.Username);
     this.cookieService.set('ssoRole', account.User.SsoRole);
+    this.cookieService.set('isRegister_main', account.IsRegister.toString());
     this.roleLocal = account.User.SsoRole;
 
     if ((account.User.SsoRole === '' || account.User.SsoRole === null) && !environment.production) {
@@ -83,7 +84,7 @@ export class AuthService {
 
   signOut(noRedirectToLogoutUrl: boolean = false): void {
     localStorage.removeItem('username');
-    localStorage.removeItem('isRegister');
+    localStorage.removeItem('isRegister_main');
     localStorage.removeItem('ssoRole');
     localStorage.removeItem(this.tokenKey);
 
