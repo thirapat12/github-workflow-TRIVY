@@ -59,20 +59,19 @@ export class AuthService {
 
   afterSignin(account: AccountModel) {
     localStorage.setItem('isRegister', account.IsRegister.toString());
+    localStorage.setItem('username',  account.Username);
+    localStorage.setItem('ssoRole', account.User.SsoRole);
 
     this.cookieService.set('UserProfile', account.User);
     this.cookieService.set('username', account.Username);
     this.cookieService.set('ssoRole', account.User.SsoRole);
     this.roleLocal = account.User.SsoRole;
 
-    // localStorage.setItem('username',  account.Username);
-    // localStorage.setItem('ssoRole', account.User.SsoRole);
-
-    if (account.User.SsoRole === null && !environment.production) {
+    if ((account.User.SsoRole === '' || account.User.SsoRole === null) && !environment.production) {
       this.cookieService.set('ssoRole', 'Administrator');
       localStorage.setItem('ssoRole', 'Administrator');
       this.roleLocal = 'Administrator';
-    } else if (account.User.SsoRole === null) {
+    } else if (account.User.SsoRole === '' || account.User.SsoRole === null) {
       this.cookieService.set('ssoRole', 'Stakeholder');
       localStorage.setItem('ssoRole', 'Stakeholder');
       this.roleLocal = 'Stakeholder';
