@@ -34,26 +34,21 @@
         <li class="nav-item" *ngIf="login">
           <a class="nav-link js-scroll-trigger" (click)="onLoginClick()">Login</a>
         </li>
-        <div class="nav-item dropdown profile  js-scroll-trigger" *ngIf="logout">
-          <button class="username-pic dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false" placement="left" ngbTooltip="Profile">
-            <img class="avatar" src="./assets/avatars/profile.jpg">
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <span class=" username mr-12 dropdown-item n-cursor">{{userName}}</span>
-            <button class="dropdown-item h-cursor" (click)="onlogout()">
-              <i class="fa fa-lock mr-1"></i>
-              <span class=" username mr-12">Log out</span>
+        <li class="nav-item dropdown profile" *ngIf="logout">
+          <a class="nav-link js-scroll-trigger">
+            <button class="username-pic dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" placement="left" ngbTooltip="Profile">
+              <img class="avatar" src="./assets/avatars/profile.jpg">
             </button>
-          </div>
-        </div>
-
-        <!-- <li class="nav-item" *ngIf="showuser">
-          <span class="nav-link js-scroll-trigger">{{userName}}</span>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <span class=" username mr-12 dropdown-item n-cursor">{{userName}}</span>
+              <button class="dropdown-item h-cursor" (click)="onlogout()">
+                <i class="fa fa-lock mr-1"></i>
+                <span class=" username mr-12">Log out</span>
+              </button>
+            </div>
+          </a>
         </li>
-        <li class="nav-item" *ngIf="logout">
-          <a class="nav-link js-scroll-trigger" (click)="onLoginClick()">Logout</a>
-        </li> -->
       </ul>
     </div>
   </div>
