@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
 
     this.event();
 
-    window.$(window).scroll(event);
+    window.$(window).scroll(this.event);
     window.$('.portfolio-modal').on('show.bs.modal', function () {
       window.$('.navbar').addClass('d-none');
     });
