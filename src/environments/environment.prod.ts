@@ -9,11 +9,11 @@ export const environment = {
     web: '/team',
   },
   pop: {
-    api: 'http://pop-api.mts.myaisdc.com',
-    service: 'http://pop.mts.myaisdc.com/service',
-    admin: 'http://pop.mts.myaisdc.com/admin',
-    product: 'http://pop.mts.myaisdc.com/project',
-    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
+    api: 'https://pop-api.mts.myaisdc.com',
+    service: 'https://pop.mts.myaisdc.com/service',
+    admin: 'https://pop.mts.myaisdc.com/admin',
+    product: 'https://pop.mts.myaisdc.com/project',
+    portfolio: 'https://pop.mts.myaisdc.com/portfolio',
   },
   git: {
     web: 'https://git.matadorsuite.com/',

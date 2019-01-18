@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.env = environment;
+    this.userName = localStorage.getItem('username');
     this.user();
   }
 

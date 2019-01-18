@@ -65,7 +65,8 @@ export class AuthService {
     this.cookieService.set('ssoRole', account.User.SsoRole);
     this.roleLocal = account.User.SsoRole;
 
-    localStorage.setItem('ssoRole', account.User.SsoRole);
+    // localStorage.setItem('username',  account.Username);
+    // localStorage.setItem('ssoRole', account.User.SsoRole);
 
     if (account.User.SsoRole === null && !environment.production) {
       this.cookieService.set('ssoRole', 'Administrator');
@@ -76,12 +77,6 @@ export class AuthService {
       localStorage.setItem('ssoRole', 'Stakeholder');
       this.roleLocal = 'Stakeholder';
     }
-
-    // if (account.IsRegister) {
-    //   this.router.navigate(['home']);
-    // } else {
-    //   this.router.navigate(['/register']);
-    // }
 
     this.onChangeUsername.next(account.Username);
     this.onChangeSsoRole.next(this.roleLocal);
@@ -114,4 +109,6 @@ export class AuthService {
   getUserName(): string {
     return localStorage.getItem('username') || '';
   }
+
+  
 }
