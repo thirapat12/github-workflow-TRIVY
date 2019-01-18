@@ -8,6 +8,12 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 
 declare const require: any;
+declare global {
+  interface Window {
+    jQuery: any;
+    $: any;
+  }
+}
 
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(

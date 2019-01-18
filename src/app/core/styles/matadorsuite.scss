@@ -94,8 +94,8 @@ img::-moz-selection {
 
 #mainNav {
   // background-color: #b3d043
-  background-color: rgba(179, 208, 67,0.7);
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  background-color: rgba(179, 208, 67, 0.7);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
 }
 
 #mainNav .navbar-toggler {
@@ -127,6 +127,11 @@ img::-moz-selection {
   font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif
 }
 
+.username{
+  letter-spacing: 1px;
+  color: #fff;
+  font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif
+}
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
   // color: #8dc63f
   color: #fff;
@@ -140,7 +145,7 @@ img::-moz-selection {
     transition: padding-top .3s, padding-bottom .3s;
     border: none;
     // background-color: #b3d043;
-    background-color: rgba(179, 208, 67,0.7)
+    background-color: rgba(179, 208, 67, 0.7)
     // background-color: rgba(33, 37, 37, .5)
   }
 

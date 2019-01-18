@@ -1,13 +1,13 @@
-import { CoreModule } from './core.module';
+import { ShareModule } from './share.module';
 
 describe('CoreModule', () => {
-  let coreModule: CoreModule;
+  let shareModule: ShareModule;
 
   beforeEach(() => {
-    coreModule = new CoreModule();
+    shareModule = new ShareModule();
   });
 
   it('should create an instance', () => {
-    expect(coreModule).toBeTruthy();
+    expect(shareModule).toBeTruthy();
   });
 });

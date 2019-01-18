@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
+import { CookieService } from 'ngx-cookie-service';
+import { authConfig } from 'src/app/core/configs/auth-config';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'www';
+
+  constructor(private cookie: CookieService,
+              private oauthService: OAuthService) {
+    this.configureWithNewConfigApi();
+  }
+
+  configureWithNewConfigApi() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.setStorage(localStorage);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin()
+      .then(() => {
+      });
+  }
 }

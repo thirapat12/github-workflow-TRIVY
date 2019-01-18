@@ -1,13 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger"
-       (click)="onScroll('app-header')">Matador Suite</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button"
-            data-toggle="collapse"
-            data-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation">Menu <i class="fa fa-bars"></i>
+    <a class="navbar-brand js-scroll-trigger" (click)="onScroll('app-header')">Matador Suite</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu
+      <i class="fa fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ml-auto">
@@ -35,8 +31,23 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="http://issue.matadorsuite.com/projects/web-pop">Issue</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/team/login">Login</a>
+        <li class="nav-item" *ngIf="login">
+          <a class="nav-link js-scroll-trigger" (click)="onLoginClick()">Login</a>
+        </li>
+        <li class="nav-item dropdown profile" *ngIf="logout">
+          <a class="nav-link js-scroll-trigger">
+            <button class="username-pic dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" placement="left" ngbTooltip="Profile">
+              <img class="avatar" src="./assets/avatars/profile.jpg">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <span class=" username mr-12 dropdown-item n-cursor">{{userName}}</span>
+              <button class="dropdown-item h-cursor" (click)="onlogout()">
+                <i class="fa fa-lock mr-1"></i>
+                <span class=" username mr-12">Log out</span>
+              </button>
+            </div>
+          </a>
         </li>
       </ul>
     </div>

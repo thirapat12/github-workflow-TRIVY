@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactPageComponent } from './contact-page.component';
+import { ShareTestingModule } from '../../../../core/share-testing.module';
 
 describe('ContactPageComponent', () => {
   let component: ContactPageComponent;
@@ -8,9 +9,10 @@ describe('ContactPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactPageComponent ]
+      imports: [ShareTestingModule],
+      declarations: [ContactPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

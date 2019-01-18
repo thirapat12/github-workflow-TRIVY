@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShareModule } from './core/share.module';
 import { RouterModule, Routes } from '@angular/router';
+import { ShareModule } from './core/share.module';
 import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 
 const routes: Routes = [
@@ -16,19 +16,19 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
+
+  },
+  {
     path: 'error',
-    children: [
-      {
-        path: '',
-        loadChildren: './modules/error/error.module#ErrorModule'
-      },
-    ]
+    loadChildren: './modules/error/error.module#ErrorModule',
   },
   {
     path: '**',
     pathMatch: 'full',
     redirectTo: '',
-  }
+  },
 ];
 
 @NgModule({
