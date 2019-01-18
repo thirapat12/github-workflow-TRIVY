@@ -49,10 +49,12 @@ export class NavbarComponent implements OnInit {
 
   onLoginClick() {
     this.router.navigate(['/auth/signin']);
+    this.user();
   }
 
   onlogout() {
     this.auth.signOut();
+    this.user();
   }
 
 

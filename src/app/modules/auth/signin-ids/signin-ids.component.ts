@@ -31,7 +31,6 @@ export class SigninIdsComponent implements OnInit {
     if (isLogin) {
       this.getAccount();
     } else {
-      console.log('login signin');
       this.authService.signIn();
     }
   }
