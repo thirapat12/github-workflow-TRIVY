@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainLayoutComponent } from './main-layout.component';
+import { ShareTestingModule } from '../../core/share-testing.module';
+import { NavbarComponent } from '../layouts/navbar/navbar.component';
+import { HeaderComponent } from '../layouts/header/header.component';
+import { FooterComponent } from '../layouts/footer/footer.component';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;
@@ -8,9 +12,15 @@ describe('MainLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainLayoutComponent ]
+      imports: [ShareTestingModule],
+      declarations: [
+        MainLayoutComponent,
+        NavbarComponent,
+        HeaderComponent,
+        FooterComponent,
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

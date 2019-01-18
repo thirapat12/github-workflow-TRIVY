@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PortfolioPageComponent } from './portfolio-page.component';
+import { ShareTestingModule } from '../../../../core/share-testing.module';
 
 describe('PortfolioPageComponent', () => {
   let component: PortfolioPageComponent;
@@ -8,9 +9,10 @@ describe('PortfolioPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortfolioPageComponent ]
+      imports: [ShareTestingModule],
+      declarations: [PortfolioPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

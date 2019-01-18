@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-main-page',
@@ -11,38 +10,27 @@ export class MainPageComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
-    // $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
-    //   if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') &&
-    //     location.hostname === this.hostname) {
-    //     let e = $(this.hash);
-    //     if (e = e.length ? e : $('[name=' + this.hash.slice(1) + ']'), e.length) {
-    //       return $('html, body').animate({scrollTop: e.offset().top - 54}, 1e3, 'easeInOutExpo');
-    //     }
-    //   }
-    // });
+  private static event() {
+    const mainNav = window.$('#mainNav');
+    if (mainNav && mainNav.offset() && mainNav.offset().top > 100) {
+      mainNav.addClass('navbar-shrink');
+    } else if (mainNav) {
+      mainNav.removeClass('navbar-shrink');
+    }
+  }
 
-    window.$('.js-scroll-trigger').click(function () {
+  ngOnInit() {
+    window.$('.js-scroll-trigger').click(() => {
       window.$('.navbar-collapse').collapse('hide');
     });
 
-    const event = function () {
-      const mainNav = window.$('#mainNav');
-      if (mainNav.offset().top > 100) {
-        mainNav.addClass('navbar-shrink');
-      } else {
-        mainNav.removeClass('navbar-shrink');
-      }
-    };
+    MainPageComponent.event();
 
-    event();
-
-    window.$(window).scroll(event);
-    window.$('.portfolio-modal').on('show.bs.modal', function () {
+    window.$(window).scroll(MainPageComponent.event);
+    window.$('.portfolio-modal').on('show.bs.modal', () => {
       window.$('.navbar').addClass('d-none');
     });
-
-    window.$('.portfolio-modal').on('hidden.bs.modal', function () {
+    window.$('.portfolio-modal').on('hidden.bs.modal', () => {
       window.$('.navbar').removeClass('d-none');
     });
   }
