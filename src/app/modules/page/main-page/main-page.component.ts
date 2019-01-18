@@ -12,6 +12,9 @@ export class MainPageComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
   ) {
+    if (localStorage.getItem('username') !== null && localStorage.getItem('isRegister_main') === null) {
+      this.router.navigate(['/auth/signin']);
+    }
   }
 
   private static event() {
