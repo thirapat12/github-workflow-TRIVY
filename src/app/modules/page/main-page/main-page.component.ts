@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -6,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-
-  constructor() {
+  haveRegis: any ;
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {
+    this.haveRegis = Boolean(localStorage.getItem('isRegister_main'));
+    if (!this.haveRegis) {
+      this.router.navigate(['/auth/signin']);
+    }
   }
 
   private static event() {
@@ -34,5 +43,6 @@ export class MainPageComponent implements OnInit {
       window.$('.navbar').removeClass('d-none');
     });
   }
+
 
 }
