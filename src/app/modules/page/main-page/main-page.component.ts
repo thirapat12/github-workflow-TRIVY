@@ -8,13 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-  haveRegis: any ;
   constructor(
     private auth: AuthService,
     private router: Router,
   ) {
-    this.haveRegis = Boolean(localStorage.getItem('isRegister_main'));
-    if (!this.haveRegis) {
+    if (localStorage.getItem('isRegister_main') === null) {
       this.router.navigate(['/auth/signin']);
     }
   }
