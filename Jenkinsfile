@@ -1,22 +1,16 @@
 node('docker') {
-    def tag = 'latest'
+    def tag = 'dev'
     stage('Checkout') {
         git branch: "${env.branch}", credentialsId: 'git.matador', url: "${env.gitUrl}"
-
-        def tempTag = sh script: 'git tag --points-at HEAD | tail -1', returnStdout: true
-
-        if(tempTag != '') {
-            tag = tempTag
-        }
-
     }
+
     stage('Build & push to registry') {
         withDockerRegistry(credentialsId: 'pqm-registry.azure', url: 'https://vpcpqmregistry.azurecr.io') {
             def buildEnv = 'dev'
             sh "Docker/build.sh $tag"
         }
-
     }
+    
     stage('Deploy') {
         def destDir = '/app/matadorsuite-web'
         def destHost = 'pqmadmin@10.5.1.12'
