@@ -16,7 +16,7 @@ node('docker') {
         def destHost = 'pqmadmin@10.5.1.12'
 
         sh """
-            ssh ${destHost} 'sudo mkdir -p ${destDir}'
+            ssh ${destHost} 'mkdir -p ${destDir}'
             scp Docker/docker-compose.yml ${destHost}:${destDir}
         """
 
