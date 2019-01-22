@@ -1,7 +1,7 @@
 version: '3'
 services:
   matadorsuite-web:
-    image: vpcpqmregistry.azurecr.io/matadorsuite-web${TAG}
+    image: vpcpqmregistry.azurecr.io/matadorsuite-web:dev
     build:
       context: ../
       dockerfile: Docker/Dockerfile
