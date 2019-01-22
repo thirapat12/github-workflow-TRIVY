@@ -12,14 +12,14 @@ node('docker') {
     }
     stage('Build & push to registry') {
         withDockerRegistry(credentialsId: 'pqm-registry.azure', url: 'https://vpcpqmregistry.azurecr.io') {
-            def buildEnv = 'prod'
+            def buildEnv = 'dev'
             sh "Docker/build.sh $tag"
         }
 
     }
     stage('Deploy') {
         def destDir = '/app/matadorsuite-web'
-        def destHost = 'pqmadmin@10.5.1.11'
+        def destHost = 'pqmadmin@10.5.1.12'
 
         sh """
             ssh ${destHost} 'mkdir -p ${destDir}'
