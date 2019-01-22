@@ -11,6 +11,8 @@ RUN npm run test:cover \
 FROM nginx:1.15.5-alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /src/dist/www .
+WORKDIR /coverage
+COPY --from=builder /src/coverage .
 
 COPY Docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY Docker/nginx/conf.d/ /etc/nginx/conf.d/
