@@ -13,7 +13,7 @@ node('docker') {
 
     stage('Push coverage report') {
         dir('coverage') {
-            git branch: 'master', credentialsId: 'git.matador', url: 'https://git.matadorsuite.com/matadorsuite/test-result/web-deploy.git'
+            git branch: 'master', credentialsId: 'git.matador', url: 'https://git.matadorsuite.com/matadorsuite/test-result/matadorsuite-landing-page.git'
             def containerName = 'matadorsuite-web-coverage'
             def imageName = 'vpcpqmregistry.azurecr.io/matadorsuite-web:dev'
 
@@ -27,7 +27,7 @@ node('docker') {
                 git config --local user.email jenkins_matadorsuite@ais.co.th
                 git add --all
                 git commit -m 'coverage report from build #${env.BUILD_NUMBER}'
-                git push https://$USERNAME:$PASSWORD@git.matadorsuite.com/matadorsuite/test-result/web-deploy.git
+                git push https://$USERNAME:$PASSWORD@git.matadorsuite.com/matadorsuite/test-result/matadorsuite-landing-page.git
                 """
             }
         }
