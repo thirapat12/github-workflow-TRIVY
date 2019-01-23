@@ -11,7 +11,7 @@ RUN npm run test-silent \
 
 FROM nginx:1.15.5-alpine
 WORKDIR /coverage
-COPY --from=builder /src/coverage .
+COPY --from=builder /coverage .
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /app/dist/www .
 
