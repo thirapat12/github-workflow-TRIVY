@@ -13,7 +13,7 @@ FROM nginx:1.15.5-alpine
 WORKDIR /coverage
 COPY --from=builder /app/coverage .
 WORKDIR /usr/share/nginx/html
-COPY --from=builder /app/dist/www .
+COPY --from=builder /app/dist .
 
 COPY Docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY Docker/nginx/conf.d/ /etc/nginx/conf.d/
