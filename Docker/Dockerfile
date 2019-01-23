@@ -5,7 +5,8 @@ COPY package.json .
 RUN npm install
 
 COPY . .
-RUN npm run build:dev
+RUN npm run test:cover \
+    && npm run build:dev
 
 FROM nginx:1.15.5-alpine
 WORKDIR /usr/share/nginx/html
