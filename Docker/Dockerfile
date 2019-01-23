@@ -1,4 +1,4 @@
-FROM node:10.14.2-alpine as builder
+FROM circleci/node:8.14-jessie-browsers as builder
 EXPOSE 80
 WORKDIR /src
 COPY package.json .
