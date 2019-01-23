@@ -5,7 +5,7 @@ COPY package.json .
 RUN npm install
 
 COPY . .
-RUN npm run test:cover \
+RUN npm run test-silent \
     && npm run build:dev
 
 FROM nginx:1.15.5-alpine
