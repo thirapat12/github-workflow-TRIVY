@@ -10,7 +10,7 @@
         "build:dev": "ng build",
         "build:prod": "ng build --prod",
         "test": "ng test --code-coverage=true --watch=true",
-        "test-silent": "ng test --code-coverage --progress=false --watch=false --karmaConfig=karma-ci.conf.js --source-map=true",
+        "test-silent": "ng test --code-coverage --progress=false --watch=false --karmaConfig=src/karma-ci.conf.js --source-map=true",
         "test:cover": "ng test --code-coverage=true --watch=false",
         "lint": "ng lint",
         "e2e": "ng e2e"
