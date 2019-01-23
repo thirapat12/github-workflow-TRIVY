@@ -1,4 +1,5 @@
 FROM circleci/node:8.14-jessie-browsers as builder
+USER root
 EXPOSE 80
 WORKDIR /app
 COPY package.json .
