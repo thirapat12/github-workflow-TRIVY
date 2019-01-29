@@ -27,9 +27,9 @@ export const environment = {
     web: 'https://wiki.matadorsuite.com/xwiki'
   },
   authConfig: {
-    clientId: 'client-pop-dev',
-    server: 'http://identity.mts.myaisdc.com',
-    scope: 'email openid profile roles api-pop-dev'
+    clientId: 'client-matadorsuite-dev',
+    server: 'https://auth.matadorsuite.com',
+    scope: 'email openid profile roles api-pop-dev',
   }
 };
 
