@@ -44,7 +44,8 @@ node('docker') {
         """
 
         withCredentials([usernamePassword(credentialsId: 'pqm-registry.azure', passwordVariable: 'password', usernameVariable: 'username')]) {
-            sh "ssh ${destHost} 'bash -s' < Docker/docker-compose.sh ${env.USERNAME} ${env.PASSWORD} ${destDir}"
+            def deployEnv = 'dev'
+            sh "ssh ${destHost} 'bash -s' < Docker/docker-compose.sh ${env.USERNAME} ${env.PASSWORD} ${destDir} ${deployEnv}"
         }
 
     }
