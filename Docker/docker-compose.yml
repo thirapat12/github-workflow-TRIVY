@@ -4,6 +4,6 @@ services:
     image: vpcpqmregistry.azurecr.io/matadorsuite-web${TAG}
     build:
       context: ../
-      dockerfile: Docker/Dockerfile
+      dockerfile: Docker/DockerFiles/${BUILD_ENV}/Dockerfile
     ports:
      - 15000:80
