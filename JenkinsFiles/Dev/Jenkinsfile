@@ -7,7 +7,7 @@ node('docker') {
     stage('Build & push to registry') {
         withDockerRegistry(credentialsId: 'pqm-registry.azure', url: 'https://vpcpqmregistry.azurecr.io') {
             def buildEnv = 'dev'
-            sh "Docker/build.sh $tag"
+            sh "Docker/build.sh $tag ${buildEnv}"
         }
     }
 

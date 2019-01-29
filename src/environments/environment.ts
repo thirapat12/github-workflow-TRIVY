@@ -6,20 +6,16 @@ export const environment = {
   production: false,
   local: true,
   matadorsuite: {
-    www: 'https://www.matadorsuite.com',
-    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
-    product: 'http://pop.mts.myaisdc.com/product',
+    www: 'http://mts.matadorsuite.com',
+    portfolio: '/portfolio',
+    product: '/product'
   },
   timesheet: {
     api: 'http://team-api.mts.myaisdc.com',
-    web: 'http://team.mts.myaisdc.com',
+    web: '/team',
   },
   pop: {
     api: 'http://pop-api.mts.myaisdc.com',
-    service: 'http://pop.mts.myaisdc.com/service',
-    admin: 'http://pop.mts.myaisdc.com/admin',
-    product: 'http://pop.mts.myaisdc.com/project',
-    portfolio: 'http://pop.mts.myaisdc.com/portfolio',
   },
   git: {
     web: 'https://git.matadorsuite.com/',
@@ -31,9 +27,9 @@ export const environment = {
     web: 'https://wiki.matadorsuite.com/xwiki'
   },
   authConfig: {
-    clientId: 'client-pop-dev',
-    server: 'http://identity.mts.myaisdc.com',
-    scope: 'email openid profile roles api-pop-dev'
+    clientId: 'client-matadorsuite-dev',
+    server: 'https://auth.matadorsuite.com',
+    scope: 'email openid profile roles api-pop-dev',
   }
 };
 
