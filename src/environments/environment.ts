@@ -28,7 +28,7 @@ export const environment = {
   },
   authConfig: {
     clientId: 'client-matadorsuite-dev',
-    server: 'https://auth.matadorsuite.com',
+    server: 'http://identity.mts.myaisdc.com',
     scope: 'email openid profile roles api-pop-dev',
   }
 };
