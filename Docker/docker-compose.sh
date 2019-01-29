@@ -7,7 +7,8 @@ APP_DIR=$3
 DEPLOY_ENV=$4
 docker login -u $USERNAME -p $PASSWORD vpcpqmregistry.azurecr.io
 
-export TAG=":${DEPLOY_ENV}"
+export TAG=":$DEPLOY_ENV"
+
 COMPOSE_FILE="${APP_DIR}/docker-compose.yml"
 
 docker-compose -f $COMPOSE_FILE stop || echo 'Ignored'
