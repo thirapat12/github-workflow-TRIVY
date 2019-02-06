@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-team-page',
@@ -6,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team-page.component.scss']
 })
 export class TeamPageComponent implements OnInit {
-
-  constructor() {
+  env: any;
+  constructor(
+    private router: Router,
+  ) {
   }
 
   ngOnInit() {
+    this.env = environment;
   }
 
 }
