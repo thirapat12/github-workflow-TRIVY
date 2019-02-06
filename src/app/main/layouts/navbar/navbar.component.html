@@ -8,19 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ml-auto">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" [href]="env.matadorsuite.product">Product</a>
+          <a class="nav-link js-scroll-trigger" (click)="onScroll('product-page')">Product</a>
         </li>
         <li class="nav-item">
           <!-- <a class="nav-link js-scroll-trigger" href="#services">Services</a> -->
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" [href]="env.matadorsuite.portfolio">Portfolio</a>
+          <a class="nav-link js-scroll-trigger"  (click)="onScroll('portfolio-page')">Portfolio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" [href]="env.timesheet.web">Team</a>
-        </li>
-        <li class="nav-item">
-          <!-- <a class="nav-link js-scroll-trigger" href="/timesheet">Timesheet</a> -->
+          <a class="nav-link js-scroll-trigger"  (click)="onScroll('team-page')">Team</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" (click)="onScroll('about-page')">About</a>
@@ -32,7 +29,7 @@
           <a class="nav-link js-scroll-trigger" href="http://issue.matadorsuite.com/projects/web-pop">Issue</a>
         </li>
         <li class="nav-item" *ngIf="login">
-          <a class="nav-link js-scroll-trigger" (click)="onLoginClick()">Login</a>
+          <a class="nav-link js-scroll-trigger" [href]="env.timesheet.web">Login</a>
         </li>
         <li class="nav-item dropdown profile" *ngIf="logout">
           <a class="nav-link js-scroll-trigger">
