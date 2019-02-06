@@ -16,7 +16,7 @@ export class AboutPageComponent implements OnInit {
 
   ngOnInit() {
     this.pages.push(new PageInfo(
-      'Timesheet',
+      'Team',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-stack-1x', 'fa-inverse', 'fa-calendar-alt'],
       environment.timesheet.web));
@@ -48,7 +48,7 @@ export class AboutPageComponent implements OnInit {
       'https://issue.matadorsuite.com/'));
 
     this.pages.push(new PageInfo(
-      'Teabreak',
+      'Evaluate',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-coffee', 'fa-stack-1x', 'fa-inverse'],
       'https://teabreak.matadorsuite.com'));
@@ -57,11 +57,11 @@ export class AboutPageComponent implements OnInit {
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-users', 'fa-stack-1x', 'fa-inverse'],
       'https://users.matadorsuite.com'));
-    this.pages.push(new PageInfo(
-      'Cloud',
-      'Lorem ipsum dolor sit amet',
-      ['fab', 'fa-aws', 'fa-stack-1x', 'fa-inverse'],
-      'https://console.amazon.com'));
+    // this.pages.push(new PageInfo(
+    //   'Cloud',
+    //   'Lorem ipsum dolor sit amet',
+    //   ['fab', 'fa-aws', 'fa-stack-1x', 'fa-inverse'],
+    //   'https://console.amazon.com'));
 
     this.pageChunks = this.arrayChunk(this.pages, 3);
   }
