@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   matadorsuite: {
-    www: 'https://www.ais.matadorsuite.com',
+    www: 'https://ais.matadorsuite.com',
     portfolio: '/portfolio',
     product: '/product'
   },
