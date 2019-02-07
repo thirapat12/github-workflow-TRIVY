@@ -6,7 +6,7 @@ node('docker') {
         def tempTag = sh script: 'git tag --points-at HEAD | tail -1', returnStdout: true
 
         if(tempTag != '') {
-            tag = tempTag
+            tag = tempTag.trim()
         }
 
     }
@@ -27,7 +27,8 @@ node('docker') {
         """
 
         withCredentials([usernamePassword(credentialsId: 'pqm-registry.azure', passwordVariable: 'password', usernameVariable: 'username')]) {
-            sh "ssh ${destHost} 'bash -s' < Docker/docker-compose.sh ${env.USERNAME} ${env.PASSWORD} ${destDir}"
+            def deployEnv = 'latest'
+            sh "ssh ${destHost} 'bash -s' < Docker/docker-compose.sh ${env.USERNAME} ${env.PASSWORD} ${destDir} ${deployEnv}"
         }
 
     }
