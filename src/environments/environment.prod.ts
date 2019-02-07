@@ -22,9 +22,9 @@ export const environment = {
     web: 'https://wiki.matadorsuite.com/xwiki'
   },
   authConfig: {
-    clientId: 'client-matadorsuite-dev',
+    clientId: 'client-matadorsuite',
     server: 'https://auth.matadorsuite.com',
-    scope: 'email openid profile roles api-pop-dev',
+    scope: 'email openid profile roles api-pop',
     postLogoutRedirectUrl: 'https://www.matadorsuite.com'
   }
 };
