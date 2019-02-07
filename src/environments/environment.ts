@@ -30,6 +30,7 @@ export const environment = {
     clientId: 'client-matadorsuite-dev',
     server: 'http://identity.mts.myaisdc.com',
     scope: 'email openid profile roles api-pop-dev',
+    postLogoutRedirectUrl: 'http://mts.myaisdc.com'
   }
 };
 
