@@ -5,6 +5,7 @@ const bases = document.getElementsByTagName('base');
 let baseHref = null;
 if (bases.length > 0) {
   baseHref = bases[0].href + 'auth/signin';
+  // baseHref = bases[0].href + '../team/login';
 }
 
 export const authConfig: AuthConfig = {
