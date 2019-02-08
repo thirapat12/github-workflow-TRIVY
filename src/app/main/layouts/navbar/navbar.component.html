@@ -23,10 +23,10 @@
           <a class="nav-link js-scroll-trigger" (click)="onScroll('about-page')">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" (click)="gotoWiki()">Help</a>
+          <a class="nav-link js-scroll-trigger" (click)="gotoWikiHelp()">Help</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="http://issue.matadorsuite.com/projects/web-pop">Issue</a>
+          <a class="nav-link js-scroll-trigger" (click)="gotoWikiIssue()">Issue</a>
         </li>
         <li class="nav-item" *ngIf="login">
           <a class="nav-link js-scroll-trigger" [href]="env.timesheet.web">Login</a>
