@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
   matadorsuite: {
-    www: 'https://ais.matadorsuite.com',
-    portfolio: '/portfolio',
-    product: '/product'
+    www: 'https://www.matadorsuite.com',
+    portfolio: 'https://ais.matadorsuite.com/portfolio',
+    product: 'https://ais.matadorsuite.com/product'
   },
   timesheet: {
     api: 'https://team-api.matadorsuite.com',
-    web: '/team',
+    web: 'https://ais.matadorsuite.com/team',
   },
   pop: {
     api: 'https://pop-api.matadorsuite.com'
@@ -22,8 +22,9 @@ export const environment = {
     web: 'https://wiki.matadorsuite.com/xwiki'
   },
   authConfig: {
-    clientId: 'client-matadorsuite-dev',
+    clientId: 'client-matadorsuite',
     server: 'https://auth.matadorsuite.com',
-    scope: 'email openid profile roles api-pop-dev',
+    scope: 'email openid profile roles api-pop',
+    postLogoutRedirectUrl: 'https://www.matadorsuite.com'
   }
 };

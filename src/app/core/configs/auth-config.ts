@@ -21,4 +21,6 @@ export const authConfig: AuthConfig = {
    */
   clientId: environment.authConfig.clientId,
   scope: environment.authConfig.scope,
+
+  postLogoutRedirectUri: environment.authConfig.postLogoutRedirectUrl,
 };
