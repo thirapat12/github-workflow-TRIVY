@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit {
     const el = document.getElementById(id);
     el.scrollIntoView({
       behavior: 'smooth',
+      block: 'start',
     });
   }
 
