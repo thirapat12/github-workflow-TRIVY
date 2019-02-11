@@ -42,10 +42,10 @@ export class AboutPageComponent implements OnInit {
       ['fa', 'fa-database', 'fa-stack-1x', 'fa-inverse'],
       'https://repo.matadorsuite.com/'));
     this.pages.push(new PageInfo(
-      'issue',
+      'Issue',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-bug', 'fa-stack-1x', 'fa-inverse'],
-      'https://issue.matadorsuite.com/'));
+      'https://git.matadorsuite.com/git/matadorsuite/issue/matadorsuite-issuetracking/issues'));
 
     this.pages.push(new PageInfo(
       'Evaluate',
