@@ -27,7 +27,7 @@ node('docker') {
                 git config --local user.email jenkins_matadorsuite@ais.co.th
                 git add --all
                 git commit -m 'coverage report from build #${env.BUILD_NUMBER}'
-                git push https://$USERNAME:$PASSWORD@ais.matadorsuite.com/git:matadorsuite/test-result/matadorsuite-landing-page.git
+                git push origin
                 """
             }
         }
