@@ -45,7 +45,7 @@ export class AboutPageComponent implements OnInit {
       'Issue',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-bug', 'fa-stack-1x', 'fa-inverse'],
-      'https://git.matadorsuite.com/git/matadorsuite/issue/matadorsuite-issuetracking/issues'));
+      'https://ais.matadorsuite.com/git/matadorsuite/issue/matadorsuite-issuetracking/issues'));
 
     this.pages.push(new PageInfo(
       'Evaluate',
@@ -56,7 +56,7 @@ export class AboutPageComponent implements OnInit {
       'User',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-users', 'fa-stack-1x', 'fa-inverse'],
-      'https://users.matadorsuite.com'));
+      'https://auth.matadorsuite.com'));
     // this.pages.push(new PageInfo(
     //   'Cloud',
     //   'Lorem ipsum dolor sit amet',
