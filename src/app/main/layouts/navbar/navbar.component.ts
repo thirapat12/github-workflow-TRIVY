@@ -46,12 +46,12 @@ export class NavbarComponent implements OnInit {
 
   gotoWikiHelp() {
     // tslint:disable-next-line:max-line-length
-    window.open('https://ais.matadorsuite.com/git/matadorsuite/wiki/help/wikis/home');
+    window.open('https://ais.matadorsuite.com/git/mts/wiki/help/wikis/home');
   }
 
   gotoWikiIssue() {
     // tslint:disable-next-line:max-line-length
-    window.open('https://ais.matadorsuite.com/git/matadorsuite/issue/matadorsuite-issuetracking/issues');
+    window.open('https://ais.matadorsuite.com/git/groups/mts/issue/-/issues');
   }
   onLoginClick() {
     this.router.navigate(['/auth/signin']);
