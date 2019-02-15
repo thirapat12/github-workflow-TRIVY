@@ -57,11 +57,11 @@ export class AboutPageComponent implements OnInit {
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-users', 'fa-stack-1x', 'fa-inverse'],
       'https://auth.matadorsuite.com'));
-    // this.pages.push(new PageInfo(
-    //   'Cloud',
-    //   'Lorem ipsum dolor sit amet',
-    //   ['fab', 'fa-aws', 'fa-stack-1x', 'fa-inverse'],
-    //   'https://console.amazon.com'));
+    this.pages.push(new PageInfo(
+      'Sandwish',
+      'Lorem ipsum dolor sit amet',
+      ['fa', 'fa-heart', 'fa-stack-1x', 'fa-inverse'],
+      'https://s3-ap-southeast-1.amazonaws.com/apps.transfer/Sandwish/ipa/ent/v12b38_prod/index.html'));
 
     this.pageChunks = this.arrayChunk(this.pages, 3);
   }
