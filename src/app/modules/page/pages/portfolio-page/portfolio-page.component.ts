@@ -17,5 +17,8 @@ export class PortfolioPageComponent implements OnInit {
   ngOnInit() {
     this.env = environment;
   }
+  checkLocalBu() {
+    localStorage.setItem('BU', 'Portfolio');
+  }
 
 }
