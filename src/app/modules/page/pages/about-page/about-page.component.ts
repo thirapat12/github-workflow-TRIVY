@@ -35,7 +35,7 @@ export class AboutPageComponent implements OnInit {
       'Jenkin',
       'Lorem ipsum dolor sit amet',
       ['fab', 'fa-jenkins', 'fa-stack-1x', 'fa-inverse'],
-      'https://jenkins.matadorsuite.com/'));
+      'https://ais.matadorsuite.com/git/mts/wiki/jenkins/wikis/home'));
     this.pages.push(new PageInfo(
       'Repo',
       'Lorem ipsum dolor sit amet',
