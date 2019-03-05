@@ -40,7 +40,7 @@ export class AboutPageComponent implements OnInit {
       'Repo',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-database', 'fa-stack-1x', 'fa-inverse'],
-      'https://repo.matadorsuite.com/'));
+      'https://ais.matadorsuite.com/git/mts/wiki/repo/wikis/home'));
     this.pages.push(new PageInfo(
       'Issue',
       'Lorem ipsum dolor sit amet',
@@ -51,7 +51,7 @@ export class AboutPageComponent implements OnInit {
       'Evaluate',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-coffee', 'fa-stack-1x', 'fa-inverse'],
-      'https://teabreak.matadorsuite.com'));
+      'https://ais.matadorsuite.com/git/mts/wiki/evaluate/wikis/home'));
     this.pages.push(new PageInfo(
       'User',
       'Lorem ipsum dolor sit amet',
