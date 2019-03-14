@@ -45,7 +45,7 @@ export class AboutPageComponent implements OnInit {
       'Issue',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-bug', 'fa-stack-1x', 'fa-inverse'],
-      'https://ais.matadorsuite.com/git/groups/mts/issue/-/issues'));
+      'https://ais.matadorsuite.com/git/mts/issue/matadorsuite-issuetracking/issues'));
 
     this.pages.push(new PageInfo(
       'Evaluate',
