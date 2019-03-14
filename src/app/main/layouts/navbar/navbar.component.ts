@@ -50,7 +50,6 @@ export class NavbarComponent implements OnInit {
   }
 
   gotoWikiIssue() {
-    // tslint:disable-next-line:max-line-length
     window.open('https://ais.matadorsuite.com/git/mts/issue/matadorsuite-issuetracking/issues');
   }
   onLoginClick() {
