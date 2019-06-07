@@ -3,7 +3,8 @@ export const environment = {
   matadorsuite: {
     www: 'https://www.matadorsuite.com',
     portfolio: 'https://ais.matadorsuite.com/portfolio',
-    product: 'https://ais.matadorsuite.com/product'
+    product: 'https://ais.matadorsuite.com/product',
+    evaluation: '/evaluation'
   },
   timesheet: {
     api: 'https://team-api.matadorsuite.com',

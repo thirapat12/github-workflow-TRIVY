@@ -8,7 +8,8 @@ export const environment = {
   matadorsuite: {
     www: 'http://mts.matadorsuite.com',
     portfolio: '/portfolio',
-    product: '/product'
+    product: '/product',
+    evaluation: '/evaluation'
   },
   timesheet: {
     api: 'http://team-api.mts.myaisdc.com',
