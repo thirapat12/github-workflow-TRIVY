@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   local: true,
   matadorsuite: {
-    www: 'http://mts.matadorsuite.com',
+    www: 'http://mts.myaisdc.com',
     portfolio: '/portfolio',
     product: '/product',
     evaluation: '/evaluation'
