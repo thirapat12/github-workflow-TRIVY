@@ -7,11 +7,12 @@ import { environment } from '../../../../../environments/environment';
   styleUrls: ['./service-page.component.scss']
 })
 export class ServicePageComponent implements OnInit {
-  env = environment;
+  env;
   constructor() {
   }
 
   ngOnInit() {
+    this.env = environment;
   }
 
 }
