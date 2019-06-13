@@ -17,19 +17,10 @@ node('docker') {
         }
 
     }
-    stage('Deploy') {
+   stage('Deploy') {
         def destDir = '/app/matadorsuite-web'
         def destHost = 'pqmadmin@10.5.1.11'
-
-        sh """
-            ssh ${destHost} 'mkdir -p ${destDir}'
-            scp Docker/docker-compose.yml ${destHost}:${destDir}
-        """
-
-        withCredentials([usernamePassword(credentialsId: 'pqm-registry.azure', passwordVariable: 'password', usernameVariable: 'username')]) {
-            def deployEnv = 'latest'
-            sh "ssh ${destHost} 'bash -s' < Docker/docker-compose.sh ${env.USERNAME} ${env.PASSWORD} ${destDir} ${deployEnv}"
-        }
-
+        sh "ssh ${destHost} docker-compose -f ${destDir}/docker-compose.yml pull matadorsuite-web"
+        sh "ssh ${destHost} docker-compose -f ${destDir}/docker-compose.yml up -d --force-recreate matadorsuite-web"
     }
 }
