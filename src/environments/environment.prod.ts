@@ -3,7 +3,8 @@ export const environment = {
   matadorsuite: {
     www: 'https://www.matadorsuite.com',
     portfolio: 'https://ais.matadorsuite.com/portfolio',
-    product: 'https://ais.matadorsuite.com/product'
+    product: 'https://ais.matadorsuite.com/product',
+    evaluation: '/evaluation'
   },
   timesheet: {
     api: 'https://team-api.matadorsuite.com',
@@ -24,7 +25,7 @@ export const environment = {
   authConfig: {
     clientId: 'client-matadorsuite',
     server: 'https://auth.matadorsuite.com',
-    scope: 'email openid profile roles api-pop',
+    scope: 'email openid profile roles api-matadorsuite api-pop api-notification api-teabreak',
     postLogoutRedirectUrl: 'https://www.matadorsuite.com'
   }
 };

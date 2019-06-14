@@ -51,7 +51,7 @@ export class AboutPageComponent implements OnInit {
       'Evaluate',
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-coffee', 'fa-stack-1x', 'fa-inverse'],
-      'https://ais.matadorsuite.com/git/mts/wiki/evaluate/wikis/home'));
+      environment.matadorsuite.evaluation));
     this.pages.push(new PageInfo(
       'User',
       'Lorem ipsum dolor sit amet',
