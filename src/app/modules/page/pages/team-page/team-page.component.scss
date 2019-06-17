@@ -12,9 +12,8 @@
   }
   
   .image{
-    width: 700px;
-    float: right;
-    margin-top: -50px;
+    width: 360px;
+    max-width: 100%;
   }
   .green{
     color: #8dc63f !important;
@@ -24,7 +23,7 @@
   .box{
     border:  1px dashed #707070;
     border-radius: 10px;
-    padding: 50px 10px 20px 10px;
+    padding: 20px 10px 20px 10px;
 
   }
   .title{
@@ -39,5 +38,24 @@
     padding: 10px 20px;
     font-size: 20px;
     color: #000000;
+    margin-top: 20px;
   }
   
+  .m-t-b-4 {
+    margin-top: 48px;
+    margin-bottom: 10px;
+  }
+
+  .f-size-30 {
+    font-size: 30px;
+  }
+
+  .f-size-20 {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 991px) {
+    .green{
+      font-size: 14px;
+    }  
+  }
