@@ -22,12 +22,15 @@
 }
 .box-bg-green{
   background-color: #b4cd5a;
+  height: 60px;
   color: #ffffff;
   border-radius: 12px;
-  padding: 20px 8px;
+  padding: 8px 8px;
   margin: 5px 5px;
   display: inline-grid;
   align-content: center !important;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 .box{
   border:  1px dashed #707070;
@@ -47,7 +50,22 @@
   padding: 10px 20px;
   font-size: 20px;
   color: #000000;
+  margin-top: 20px;
 }
+
 .ml-75{
   margin-left: 75px;
+}
+
+.m-t-b-4 {
+  margin-top: 48px;
+  margin-bottom: 10px;
+}
+
+.f-size-30 {
+  font-size: 30px;
+}
+
+.f-size-20 {
+  font-size: 20px;
 }
