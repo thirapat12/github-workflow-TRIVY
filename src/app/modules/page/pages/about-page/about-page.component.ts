@@ -62,8 +62,13 @@ export class AboutPageComponent implements OnInit {
       'Lorem ipsum dolor sit amet',
       ['fa', 'fa-heart', 'fa-stack-1x', 'fa-inverse'],
       'https://s3-ap-southeast-1.amazonaws.com/apps.transfer/Sandwish/ipa/ent/v12b38_prod/index.html'));
+    this.pages.push(new PageInfo(
+      'Udemy',
+      'Lorem ipsum dolor sit amet',
+      ['udemy-icon'],
+      'https://aislearning.udemy.com'));
 
-    this.pageChunks = this.arrayChunk(this.pages, 3);
+    this.pageChunks = this.arrayChunk(this.pages, 4);
   }
 
   arrayChunk(inputArray: any[], chunk = 3): any[] {
