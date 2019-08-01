@@ -18,7 +18,7 @@ node('docker') {
 
     }
    stage('Deploy') {
-        def destDir = '/app/matadorsuite-web'
+        def destDir = '/app/matadorsuite'
         def destHost = 'pqmadmin@10.5.1.11'
         sh "ssh ${destHost} docker-compose -f ${destDir}/docker-compose.yml pull matadorsuite-web"
         sh "ssh ${destHost} docker-compose -f ${destDir}/docker-compose.yml up -d --force-recreate matadorsuite-web"
