@@ -29,8 +29,8 @@ export const environment = {
   },
   authConfig: {
     clientId: 'client-matadorsuite-dev',
-    server: 'http://identity.mts.myaisdc.com',
-    scope: 'email openid profile roles api-matadorsuite-dev api-pop-dev api-notification-dev api-teabreak-dev',
+    server: 'https://auth.matadorsuite.com',
+    scope: 'email openid profile roles api-matadorsuite api-pop api-notification api-teabreak',
     postLogoutRedirectUrl: 'http://mts.myaisdc.com'
   }
 };
