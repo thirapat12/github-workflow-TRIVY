@@ -10,6 +10,7 @@ import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { UdemyPageComponent } from './pages/udemy-page/udemy-page.component';
+import { ComponentPageComponent } from './pages/component-page/component-page.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
     TeamPageComponent,
     AboutPageComponent,
     ContactPageComponent,
-    UdemyPageComponent
+    UdemyPageComponent,
+    ComponentPageComponent
   ]
 })
 export class PageModule {
