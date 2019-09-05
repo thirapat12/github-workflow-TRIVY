@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger h-cursor" (click)="onScroll('app-header')">Matador Suite</a>
+    <a class="navbar-brand js-scroll-trigger h-cursor" (click)="onScroll('app-header')">ci.matador.ais.co.th</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu
       <i class="fa fa-bars"></i>
@@ -30,9 +30,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" (click)="gotoWikiIssue()">Issue</a>
-        </li>
-        <li class="nav-item" *ngIf="login">
-          <a class="nav-link js-scroll-trigger" href="/personal">Login</a>
         </li>
         <li class="nav-item dropdown profile" *ngIf="logout">
           <a class="nav-link js-scroll-trigger">

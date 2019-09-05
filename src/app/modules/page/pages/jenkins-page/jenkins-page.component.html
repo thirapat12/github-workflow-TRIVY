@@ -1,8 +1,8 @@
-<section class="bg-light" id="about">
+<section id="jenkins">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center m-b-20px">
-        <h2 class="section-heading text-uppercase mb-4 f-size-30">About</h2>
+        <h2 class="section-heading text-uppercase mb-4 f-size-30">Jenkins CI-CD</h2>
         <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
       </div>
     </div>
@@ -12,9 +12,10 @@
         <div class="m-b-20px">
           <a [href]="page.url" target="window">
             <span class="fa-stack fa-4x item-center">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i> -->
               <i [ngClass]="page.icon"></i>
-              <img class="udemy-icon" *ngIf="page.icon[0] == 'udemy-icon'" src="./assets/images/logo_u.png" alt="">
+              <img class="udemy-icon" src="{{page.icon}}" alt="">
+              
             </span>
           </a>
           <h4 class="service-heading" [innerHTML]="page.title"></h4>
