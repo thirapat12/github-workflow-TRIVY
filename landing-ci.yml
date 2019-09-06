@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: landing
+  name: landing-page
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:  
+      app: landing
+  template:
+    metadata:
+      labels:
+        app: landing
+    spec:
+      containers:
+      - name: landingpage
+        image: matador/landingpage:1.4.0
+        resources:
+          limits:
+            cpu: 200m
+            memory: 150Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        imagePullPolicy: Always
+        ports:
+        - name: http-port
+          containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: landing
+  name: landing-page
+  namespace: default
+spec:
+  ports:
+  - port: 8008
+    targetPort: 80
+  selector:
+    app: landing
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: landing-page-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  namespace: default
+spec:
+  rules:
+  - host: ci.matador.ais.co.th
+    http:
+      paths:
+      - backend:
+          serviceName: landing-page
+          servicePort: 8008
