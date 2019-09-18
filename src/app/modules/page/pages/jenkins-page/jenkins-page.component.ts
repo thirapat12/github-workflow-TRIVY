@@ -21,7 +21,12 @@ export class JenkinsPageComponent implements OnInit {
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-digi/jenkins/'));
     this.pages.push(new PageInfo(
-      'Devops',
+        'BSS Transformation Team',
+        'Lorem ipsum dolor sit amet',
+        './assets/images/jenkinskube.png',
+        'http://ci.matador.ais.co.th/team-bsstranform/jenkins/'));
+    this.pages.push(new PageInfo(
+      'DevOps Team',
       'Lorem ipsum dolor sit amet',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-dod/jenkins/'));
@@ -30,6 +35,11 @@ export class JenkinsPageComponent implements OnInit {
       'Lorem ipsum dolor sit amet',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-etopup/jenkins/'));
+      this.pages.push(new PageInfo(
+        'Online Store Team',
+        'Lorem ipsum dolor sit amet',
+        './assets/images/jenkinskube.png',
+        'http://ci.matador.ais.co.th/team-onlinestore/jenkins/'));
     this.pages.push(new PageInfo(
       'Online Tracking Team',
       'Lorem ipsum dolor sit amet',
@@ -41,10 +51,10 @@ export class JenkinsPageComponent implements OnInit {
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-pcr/jenkins/'));
     this.pages.push(new PageInfo(
-      'Side Deploy Team',
+      'SID Deploy Team',
       'Lorem ipsum dolor sit amet',
       './assets/images/jenkinskube.png',
-      'http://ci.matador.ais.co.th/team-sidedeploy/jenkins/'));
+      'http://ci.matador.ais.co.th/team-siddeploy/jenkins/'));
     this.pages.push(new PageInfo(
       'My Channel Team',
       'Lorem ipsum dolor sit amet',
