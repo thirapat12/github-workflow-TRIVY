@@ -35,7 +35,7 @@ export class JenkinsPageComponent implements OnInit {
       'Lorem ipsum dolor sit amet',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-etopup/jenkins/'));
-      this.pages.push(new PageInfo(
+    this.pages.push(new PageInfo(
         'Online Store Team',
         'Lorem ipsum dolor sit amet',
         './assets/images/jenkinskube.png',
@@ -44,7 +44,7 @@ export class JenkinsPageComponent implements OnInit {
       'Online Tracking Team',
       'Lorem ipsum dolor sit amet',
       './assets/images/jenkinskube.png',
-      'http://ci.matador.ais.co.th/team-ont/jenkins/'));
+      'http://ci.matador.ais.co.th/team-onlinedigitalstore/jenkins/'));
     this.pages.push(new PageInfo(
       'PCR Team',
       'Lorem ipsum dolor sit amet',
@@ -56,10 +56,10 @@ export class JenkinsPageComponent implements OnInit {
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-siddeploy/jenkins/'));
     this.pages.push(new PageInfo(
-      'My Channel Team',
-      'Lorem ipsum dolor sit amet',
-      './assets/images/jenkinsredhat.png',
-      'http://ci.matador.ais.co.th/team-mychannel/'));
+        'TC Smart Team',
+        'Lorem ipsum dolor sit amet',
+        './assets/images/jenkinskube.png',
+        'http://ci.matador.ais.co.th/team-smart/jenkins/'));
     this.pages.push(new PageInfo(
       'Digital Trading Team',
       'Lorem ipsum dolor sit amet',

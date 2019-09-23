@@ -38,7 +38,7 @@ export class CiPageComponent implements OnInit {
         description: 'Online Store Team'
       }, { 
         id: 6,
-        url: 'http://ci.matador.ais.co.th/team-ont/jenkins/',
+        url: 'http://ci.matador.ais.co.th/team-onlinedigitalstore/jenkins/',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Online Tracking Team'
       }, {
@@ -53,16 +53,21 @@ export class CiPageComponent implements OnInit {
         description: 'SID Deploy Team'
       }, {
         id: 9,
+        url: 'http://ci.matador.ais.co.th/team-smart/jenkins/',
+        ip: '(Inside Kubernetes Cluster)',
+        description: 'TC Smart Team'
+      },{
+        id: 10,
         url: 'http://ci.matador.ais.co.th/team-mychannel/',
         ip: '10.137.16.242',
         description: 'My Channel Team'
       }, {
-        id: 10,
+        id: 11,
         url: 'http://ci.matador.ais.co.th/dt/',
         ip: '	10.138.36.138',
         description: 'Digital Trading Team'
       }, {
-        id: 11,
+        id: 12,
         url: 'http://ci.matador.ais.co.th/phx/',
         ip: '10.138.36.144',
         description: 'Phoenix Team'
