@@ -17,69 +17,59 @@ export class JenkinsPageComponent implements OnInit {
   ngOnInit() {
     this.pages.push(new PageInfo(
       'AIS DIGI Team',
-      'Lorem ipsum dolor sit amet',
+      'AIS DIGI Team',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-digi/jenkins/'));
     this.pages.push(new PageInfo(
-        'BSS Transformation Team',
-        'Lorem ipsum dolor sit amet',
-        './assets/images/jenkinskube.png',
-        'http://ci.matador.ais.co.th/team-bsstranform/jenkins/'));
-    this.pages.push(new PageInfo(
-      'DevOps Team',
-      'Lorem ipsum dolor sit amet',
+      'BSS Transformation Team',
+      'BSS Transformation Team',
       './assets/images/jenkinskube.png',
-      'http://ci.matador.ais.co.th/team-dod/jenkins/'));
+      'http://ci.matador.ais.co.th/team-bsstranform/jenkins/'));
+    this.pages.push(new PageInfo(
+      'Callingmelody Team',
+      'Callingmelody Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-callingmelody/jenkins/'));
+    this.pages.push(new PageInfo(
+      'Digital Trading Team',
+      'Digital Trading Team',
+      './assets/images/jenkinsredhat.png',
+      'http://ci.matador.ais.co.th/dt/'));
     this.pages.push(new PageInfo(
       'E-Topup Team',
-      'Lorem ipsum dolor sit amet',
+      'E-Topup Team',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-etopup/jenkins/'));
     this.pages.push(new PageInfo(
-        'Online Store Team',
-        'Lorem ipsum dolor sit amet',
-        './assets/images/jenkinskube.png',
-        'http://ci.matador.ais.co.th/team-onlinestore/jenkins/'));
+      'Online Store Team',
+      'Online Store Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-onlinestore/jenkins/'));
     this.pages.push(new PageInfo(
       'Online Tracking Team',
-      'Lorem ipsum dolor sit amet',
+      'Online Tracking Team',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-onlinedigitalstore/jenkins/'));
     this.pages.push(new PageInfo(
       'PCR Team',
-      'Lorem ipsum dolor sit amet',
+      'PCR Team',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-pcr/jenkins/'));
     this.pages.push(new PageInfo(
-      'SID Deploy Team',
-      'Lorem ipsum dolor sit amet',
-      './assets/images/jenkinskube.png',
-      'http://ci.matador.ais.co.th/team-siddeploy/jenkins/'));
-    this.pages.push(new PageInfo(
-        'TC Smart Team',
-        'Lorem ipsum dolor sit amet',
-        './assets/images/jenkinskube.png',
-        'http://ci.matador.ais.co.th/team-smart/jenkins/'));
-    this.pages.push(new PageInfo(
-      'Digital Trading Team',
-      'Lorem ipsum dolor sit amet',
-      './assets/images/jenkinsredhat.png',
-      'http://ci.matador.ais.co.th/dt/'));
-    this.pages.push(new PageInfo(
       'Phoenix Team',
-      'Lorem ipsum dolor sit amet',
+      'Phoenix Team',
       './assets/images/jenkinsredhat.png',
       'http://ci.matador.ais.co.th/phx/'));
     this.pages.push(new PageInfo(
-      'Linux base',
-      'Lorem ipsum dolor sit amet',
-      './assets/images/jenkinsredhat.png',
-      'http://cd.matador.ais.co.th/linux/'));
+      'SID Deploy Team',
+      'SID Deploy Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-siddeploy/jenkins/'));
     this.pages.push(new PageInfo(
-      'Windows base',
-      'Lorem ipsum dolor sit amet',
-      './assets/images/jenkinswindows.png',
-      'http://cd.matador.ais.co.th/windows/'));
+      'TC Smart Team',
+      'TC Smart Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-smart/jenkins/'));
 
     this.pageChunks = this.arrayChunk(this.pages, 4);
   }

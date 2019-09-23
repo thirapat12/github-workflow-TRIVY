@@ -7,6 +7,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { CiPageComponent } from './pages/ci-page/ci-page.component';
 import { CdPageComponent } from './pages/cd-page/cd-page.component';
 import { JenkinsPageComponent } from './pages/jenkins-page/jenkins-page.component';
+import { JenkinsCdComponent } from './pages/jenkins-cd/jenkins-cd.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
     AboutPageComponent,
     CiPageComponent,
     CdPageComponent,
-    JenkinsPageComponent
+    JenkinsPageComponent,
+    JenkinsCdComponent
   ]
 })
 export class PageModule {
