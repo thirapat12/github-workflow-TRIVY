@@ -29,7 +29,7 @@ export class AboutPageComponent implements OnInit {
       'GitLab',
       'Lorem ipsum dolor sit amet',
       ['fab', 'fa-gitlab', 'fa-stack-1x', 'fa-inverse', 'fa-gitlab'],
-      environment.git.web));
+      'https://git.matador.ais.co.th/mts/issue/matadorsuite-issuetracking/issues'));
 
     this.pages.push(new PageInfo(
       'Jenkin',
@@ -67,7 +67,6 @@ export class AboutPageComponent implements OnInit {
       'Lorem ipsum dolor sit amet',
       ['udemy-icon'],
       'https://aislearning.udemy.com'));
-
     this.pageChunks = this.arrayChunk(this.pages, 4);
   }
 

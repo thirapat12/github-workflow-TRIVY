@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
   }
 
   gotoWikiIssue() {
-    window.open('https://ais.matadorsuite.com/git/mts/issue/matadorsuite-issuetracking/issues');
+    window.open('https://git.matador.ais.co.th/mts/issue/matadorsuite-issuetracking/issues');
   }
   onLoginClick() {
     this.router.navigate(['/auth/signin']);
