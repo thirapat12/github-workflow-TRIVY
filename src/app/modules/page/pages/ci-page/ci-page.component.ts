@@ -38,36 +38,51 @@ export class CiPageComponent implements OnInit {
         description: 'E-Topup Team'
       }, {
         id: 6,
+        url: 'http://ci.matador.ais.co.th/team-ikm/jenkins/',
+        ip: '(Inside Kubernetes Cluster)',
+        description: 'IKM Team'
+      }, {
+        id: 7,
+        url: 'http://ci.matador.ais.co.th/team-iss/jenkins/',
+        ip: '(Inside Kubernetes Cluster)',
+        description: 'ISS Team'
+      }, {
+        id: 8,
         url: 'http://ci.matador.ais.co.th/team-onlinestore/jenkins/',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Online Store Team'
-      }, {
-        id: 7,
+      }, { 
+        id: 9,
         url: 'http://ci.matador.ais.co.th/team-onlinedigitalstore/jenkins/',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Online Tracking Team'
       }, {
-        id: 8,
+        id: 10,
         url: 'http://ci.matador.ais.co.th/team-pcr/jenkins/',
         ip: '(Inside Kubernetes Cluster)',
         description: 'PCR Team'
       }, {
-        id: 9,
+        id: 11,
+        url: 'http://ci.matador.ais.co.th/team-pfsm/jenkins/',
+        ip: '(Inside Kubernetes Cluster)',
+        description: 'PFSM Team'
+      }, {
+        id: 12,
         url: 'http://ci.matador.ais.co.th/phx/',
         ip: '10.138.36.144',
         description: 'Phoenix Team'
       }, {
-        id: 10,
+        id: 13,
         url: 'http://ci.matador.ais.co.th/team-siddeploy/jenkins/',
         ip: '(Inside Kubernetes Cluster)',
         description: 'SID Deploy Team'
       }, {
-        id: 11,
+        id: 14,
         url: 'http://ci.matador.ais.co.th/team-smart/jenkins/',
         ip: '(Inside Kubernetes Cluster)',
         description: 'TC Smart Team'
       }, {
-        id: 12,
+        id: 15,
         url: 'http://ci.matador.ais.co.th/team-mychannel/',
         ip: '10.137.16.242',
         description: 'My Channel Team'

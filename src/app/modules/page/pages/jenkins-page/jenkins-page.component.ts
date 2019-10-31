@@ -41,6 +41,16 @@ export class JenkinsPageComponent implements OnInit {
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-etopup/jenkins/'));
     this.pages.push(new PageInfo(
+      'IKM Team',
+      'IKM Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-ikm/jenkins/'));
+    this.pages.push(new PageInfo(
+      'ISS Team',
+      'ISS Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-iss/jenkins/'));
+    this.pages.push(new PageInfo(
       'Online Store Team',
       'Online Store Team',
       './assets/images/jenkinskube.png',
@@ -55,6 +65,11 @@ export class JenkinsPageComponent implements OnInit {
       'PCR Team',
       './assets/images/jenkinskube.png',
       'http://ci.matador.ais.co.th/team-pcr/jenkins/'));
+    this.pages.push(new PageInfo(
+      'PFSM Team',
+      'PFSM Team',
+      './assets/images/jenkinskube.png',
+      'http://ci.matador.ais.co.th/team-pfsm/jenkins/'));
     this.pages.push(new PageInfo(
       'Phoenix Team',
       'Phoenix Team',
