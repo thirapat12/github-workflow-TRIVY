@@ -5,7 +5,7 @@ metadata:
   labels:
     app: landing
   name: landing-page
-  namespace: default
+  namespace: landingpage-cimatador
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: landingpage
-        image: registry.matador.ais.co.th/matador/landingpage:1.4.0
+        image: matador/landingpage:1.7.0
         resources:
           limits:
             cpu: 200m
@@ -37,7 +37,7 @@ metadata:
   labels:
     app: landing
   name: landing-page
-  namespace: default
+  namespace: landingpage-cimatador
 spec:
   ports:
   - port: 8008
@@ -52,7 +52,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  namespace: default
+  namespace: landingpage-cimatador
 spec:
   rules:
   - host: ci.matador.ais.co.th
@@ -61,4 +61,3 @@ spec:
       - backend:
           serviceName: landing-page
           servicePort: 8008
-
