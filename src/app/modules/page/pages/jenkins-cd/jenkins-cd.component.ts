@@ -15,15 +15,60 @@ export class JenkinsCdComponent implements OnInit {
 
   ngOnInit() {
     this.pages.push(new PageInfo(
-      'Linux base',
-      'Lorem ipsum dolor sit amet',
+      'DAS Team',
+      'DAS Team',
       './assets/images/jenkinsredhat.png',
-      'http://cd.matador.ais.co.th/linux/'));
+      'https://cd.matador.ais.co.th/das/jenkins'));
+    this.pages.push(new PageInfo(
+      'DMS Team',
+      'DMS Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/dms/jenkins'));
+    this.pages.push(new PageInfo(
+      'DTS Team',
+      'DTS Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/dts/jenkins'));
+    this.pages.push(new PageInfo(
+      'ED Team',
+      'ED Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/ed/jenkins'));
+    this.pages.push(new PageInfo(
+      'FBSS Team',
+      'FBSS Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/FBSS/jenkins'));
+    this.pages.push(new PageInfo(
+      'ICAS Team',
+      'ICAS Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/icas/jenkins'));
+    this.pages.push(new PageInfo(
+      'ITCO Team',
+      'ITCO Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/itco/jenkins'));
+    this.pages.push(new PageInfo(
+      'Linux base',
+      'Linux base',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/linux'));
+    this.pages.push(new PageInfo(
+      'NEXT Team',
+      'NEXT Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/next/jenkins'));
+    this.pages.push(new PageInfo(
+      'SIDDEPLOY Team',
+      'SIDDEPLOY Team',
+      './assets/images/jenkinsredhat.png',
+      'https://cd.matador.ais.co.th/SIDDeploy/jenkins'));
     this.pages.push(new PageInfo(
       'Windows base',
-      'Lorem ipsum dolor sit amet',
+      'Windows base',
       './assets/images/jenkinswindows.png',
-      'http://cd.matador.ais.co.th/windows/'));
+      'https://cd.matador.ais.co.th/windows'));
 
     this.pageChunks = this.arrayChunk(this.pages, 4);
   }
