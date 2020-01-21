@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: landingpage
-        image: matador/landingpage:1.7.0
+        image: matador/landingpage:1.8.0
         resources:
           limits:
             cpu: 200m

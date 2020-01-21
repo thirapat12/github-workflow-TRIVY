@@ -1,5 +1,5 @@
 version: '3'
 services:
   landing-page:
-    image: registry.matador.ais.co.th/matador/landingpage:1.7.0
+    image: registry.matador.ais.co.th/matador/landingpage:1.8.0
     build: .
