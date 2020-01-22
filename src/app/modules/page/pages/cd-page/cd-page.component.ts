@@ -15,7 +15,7 @@ export class CdPageComponent implements OnInit {
         id: 1,
         url: 'https://cd.matador.ais.co.th/das/jenkins',
         ip: '10.198.65.80',
-        description: 'DAD Team'
+        description: 'DAS Team'
       },{
         id: 2,
         url: 'https://cd.matador.ais.co.th/dms/jenkins',
@@ -60,7 +60,7 @@ export class CdPageComponent implements OnInit {
         id: 10,
         url: 'https://cd.matador.ais.co.th/SIDDeploy/jenkins',
         ip: '10.198.64.182',
-        description: 'SIDDEPLOY Team'
+        description: 'SIDDeploy Team'
       },{
         id: 11,
         url: 'https://cd.matador.ais.co.th/windows',
