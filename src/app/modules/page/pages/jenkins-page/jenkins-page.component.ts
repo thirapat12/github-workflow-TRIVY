@@ -24,12 +24,12 @@ export class JenkinsPageComponent implements OnInit {
       'Calling Melody Team',
       'Calling Melody Team',
       './assets/images/jenkinskube.png',
-      'https://ci.matador.ais.co.th/team-bsstranform/jenkins'));
+      'https://ci.matador.ais.co.th/team-callingmelody/jenkins'));
     this.pages.push(new PageInfo(
       'DIGI Team',
       'DIGI Team',
       './assets/images/jenkinskube.png',
-      'https://ci.matador.ais.co.th/team-callingmelody/jenkins'));
+      'https://ci.matador.ais.co.th/team-digi/jenkins'));
     this.pages.push(new PageInfo(
       'Digital Trading Team',
       'Digital Trading Team',

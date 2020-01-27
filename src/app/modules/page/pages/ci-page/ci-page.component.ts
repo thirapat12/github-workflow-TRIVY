@@ -70,7 +70,7 @@ export class CiPageComponent implements OnInit {
         id: 12,
         url: 'https://ci.matador.ais.co.th/team-onlinedigitalstore/jenkins',
         ip: '(Inside Kubernetes Cluster)',
-        description: 'Onlinedigitalstore Team'
+        description: 'Online Digitalstore Team'
       }, {
         id: 13,
         url: 'https://ci.matador.ais.co.th/team-onlinestore/jenkins',
