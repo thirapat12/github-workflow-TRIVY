@@ -1,0 +1,31 @@
+<section class="" id="ci">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <h2 class="section-heading text-uppercase m-t-b-4 f-size-30">CI.MATADOR.AIS.CO.TH ( CENDEV )</h2>
+                <p class="title f-size-20">
+                    <i class="fa fa-quote-left mr-2 font-italic quote-left" aria-hidden="true"></i>
+                    The Better Way To Manage Project
+                    <i class="fa fa-quote-right ml-2 font-italic" aria-hidden="true"></i>
+                </p>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 mb-3" *ngFor="let item of ciList">
+                        <div class="card card-shadow m-200">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">{{item.description}}</h5>
+                                <p class="card-text cursor-pointer text-left" (click)="gotoUrl(item.url)">{{item.url}}
+                                </p>
+                            </div>
+                            <small class="text-muted mb-2">{{item.ip}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-primary text-uppercase btn-matador"
+                        href="https://git.matador.ais.co.th/mts/issue/matadorsuite-issuetracking/issues">Request New
+                        Jenkins CI</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
