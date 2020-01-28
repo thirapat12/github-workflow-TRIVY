@@ -16,6 +16,7 @@ spec:
       labels:
         app: landing
     spec:
+      nodeName: node1
       containers:
       - name: landingpage
         image: matador/landingpage:2.0.0
