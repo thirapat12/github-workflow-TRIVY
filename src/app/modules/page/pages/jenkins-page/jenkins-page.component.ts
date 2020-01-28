@@ -71,6 +71,11 @@ export class JenkinsPageComponent implements OnInit {
       './assets/images/jenkinskube.png',
       'https://ci.matador.ais.co.th/team-myais/jenkins'));
     this.pages.push(new PageInfo(
+      'My Goal Team',
+      'My Goal Team',
+      './assets/images/jenkinskube.png',
+      'https://ci.matador.ais.co.th/team-mygoal/jenkins'));
+    this.pages.push(new PageInfo(
       'Online Digital Store Team',
       'Online Digital Store Team',
       './assets/images/jenkinskube.png',

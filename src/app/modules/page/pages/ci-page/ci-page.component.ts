@@ -66,68 +66,73 @@ export class CiPageComponent implements OnInit {
         url: 'https://ci.matador.ais.co.th/team-myais/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'MyAIS Team'
-      }, {
+      }, { 
         id: 12,
+        url: 'https://ci.matador.ais.co.th/team-mygoal/jenkins',
+        ip: '(Inside Kubernetes Cluster)',
+        description: 'My Goal Team'
+      }, {
+        id: 13,
         url: 'https://ci.matador.ais.co.th/team-onlinedigitalstore/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Online Digitalstore Team'
       }, {
-        id: 13,
+        id: 14,
         url: 'https://ci.matador.ais.co.th/team-onlinestore/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Online Store Team'
       }, {
-        id: 14,
+        id: 15,
         url: 'https://ci.matador.ais.co.th/team-onlinetracking/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Online Tracking Team'
       }, {
-        id: 15,
+        id: 16,
         url: 'https://ci.matador.ais.co.th/team-pfsm/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'PFSM Team'
       }, {
-        id: 15,
+        id: 17,
         url: 'https://ci.matador.ais.co.th/team-phx/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Phoenix Team'
       }, {
-        id: 16,
+        id: 18,
         url: 'http://ci.matador.ais.co.th/phx',
         ip: '10.138.36.144',
         description: 'Phoenix Team'
       }, {
-        id: 17,
+        id: 19,
         url: 'https://ci.matador.ais.co.th/team-pqbpammicrom/jenkins',
         ip: 'Inside Kubernetes Cluster',
         description: 'BPAM Microservice Team'
       }, {
-        id: 18,
+        id: 20,
         url: 'https://ci.matador.ais.co.th/team-siddeploy/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'SIDDeploy Team'
       }, {
-        id: 19,
+        id: 21,
         url: 'http://ci.matador.ais.co.th/team-singularity/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Singularity Team'
       }, {
-        id: 20,
+        id: 22,
         url: 'https://ci.matador.ais.co.th/team-smart/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'TCSmart Team'
       }, {
-        id: 21,
+        id: 23,
         url: 'https://ci.matador.ais.co.th/team-ssb/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'SSB Team'
       }, {
-        id: 22,
+        id: 24,
         url: 'http://ci.matador.ais.co.th/team-mychannel',
         ip: '10.137.16.242',
         description: 'MyChannel Team'
       }, {
-        id: 23,
+        id: 25,
         url: 'https://ci.matador.ais.co.th/team-vid/jenkins',
         ip: '(Inside Kubernetes Cluster)',
         description: 'Video Integration Development Team'
