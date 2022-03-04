@@ -1,11 +1,12 @@
-FROM tiangolo/node-frontend:10 as build-stage 
+FROM lib.matador.ais.co.th/tiangolo/node-frontend:10 as build-stage 
 
 WORKDIR /app
 COPY package*.json /app/
-RUN npm install
+RUN npm config set registry https://lib.matador.ais.co.th/repository/npm/
+RUN npm install --verbose
 COPY ./ /app/
 
 RUN npm run build-prod
 
-FROM nginx:1.17.0-alpine
+FROM lib.matador.ais.co.th/nginx:1.17.0-alpine
 COPY --from=build-stage /app/dist/ /usr/share/nginx/html
