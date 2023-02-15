@@ -57,10 +57,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: landing-page-ingress
+  namespace: landingpage-cimatador
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  namespace: landingpage-cimatador
 spec:
   rules:
   - host: ci.matador.ais.co.th
@@ -73,7 +73,7 @@ spec:
 apiVersion: v1 #ระบุว่า API Version อะไร
 kind: PersistentVolume #ระบุว่าเป็น Object ประเภทอะไร ในที่นี้คือ PV
 metadata:
-  name: landing-pv #ระบุชื่อของ PV
+  name: "landing-pv" #ระบุชื่อของ PV
   namespace: landingpage-cimatador
   labels: 
     app: landing
