@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: landingpage
-        image: matador/landingpage:2.0.0
+        image: matador/landingpage:2.0.1
         resources:
           limits:
             cpu: 200m
@@ -79,7 +79,7 @@ spec: #ส่วนนี้จะเป็นการระบุสเปค�
   accessModes:
     - ReadWriteOnce #ระบุว่า Volume นี้มีสิทธิในการเข้าถึงอย่างไร กรณีนี้คือเราจะไม่แชร์กับ Pod อื่น
   hostPath: #ระบุ Type ของ Storage ของเราให้ใช้ Storage ของ Host หรือ Node นั่นเอง
-    path: "/mnt/landing" #ระบุ Path ของ Host 
+    path: "/jenkins-data" #ระบุ Path ของ Host 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim #ระบุว่าเป็น Object ประเภท PVC
