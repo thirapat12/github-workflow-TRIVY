@@ -89,7 +89,7 @@ spec: #ส่วนนี้จะเป็นการระบุสเปค�
 apiVersion: v1
 kind: PersistentVolumeClaim #ระบุว่าเป็น Object ประเภท PVC
 metadata:
-  name: landing-pvc
+  name: landing-pvc-claim
   namespace: landingpage-cimatador
 spec:
   accessModes:
