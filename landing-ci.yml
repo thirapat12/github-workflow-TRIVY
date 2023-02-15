@@ -32,7 +32,8 @@ spec:
           containerPort: 80
         volumeMounts:
         - name: myvolume #อ้างอิงไปที่ Volume ทีเ่ราประกาศไว้ด้านล่าง
-          mountPath: /usr/share/nginx/html #Volume นี้จะ Mount ไปที่ Path ไหน
+          mountPath: /usr/share/nginx/ #Volume นี้จะ Mount ไปที่ Path ไหน
+          readOnly: false
       volumes:
       - name: myvolume #ตั้งชื่อ Volume
         persistentVolumeClaim: 
