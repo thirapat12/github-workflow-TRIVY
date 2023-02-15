@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: landingpage
-        image: devops/landingpage:2.0.1
+        image: devops/landing-page:2.0.1
         resources:
           limits:
             cpu: 200m
