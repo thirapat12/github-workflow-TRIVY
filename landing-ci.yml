@@ -30,6 +30,13 @@ spec:
         ports:
         - name: http-port
           containerPort: 80
+        volumeMounts:
+        - name: myvolume #อ้างอิงไปที่ Volume ทีเ่ราประกาศไว้ด้านล่าง
+          mountPath: /usr/share/nginx/html #Volume นี้จะ Mount ไปที่ Path ไหน
+      volumes:
+      - name: myvolume #ตั้งชื่อ Volume
+        persistentVolumeClaim: 
+          claimName: landing #อ้างอิง PVC ที่เราได้สร้างเอาไว้ เพื่อเรียกใช้ PV อีกทีหนึง
 ---
 apiVersion: v1
 kind: Service
@@ -61,3 +68,26 @@ spec:
       - backend:
           serviceName: landing-page
           servicePort: 8008
+---
+apiVersion: v1 #ระบุว่า API Version อะไร
+kind: PersistentVolume #ระบุว่าเป็น Object ประเภทอะไร ในที่นี้คือ PV
+metadata:
+  name: landing #ระบุชื่อของ PV
+spec: #ส่วนนี้จะเป็นการระบุสเปคของ Volume
+  capacity: 
+    storage: 1Gi #ระบุพื้นที่ของ Volume นี้
+  accessModes:
+    - ReadWriteOnce #ระบุว่า Volume นี้มีสิทธิในการเข้าถึงอย่างไร กรณีนี้คือเราจะไม่แชร์กับ Pod อื่น
+  hostPath: #ระบุ Type ของ Storage ของเราให้ใช้ Storage ของ Host หรือ Node นั่นเอง
+    path: "/mnt/landing" #ระบุ Path ของ Host 
+---
+apiVersion: v1
+kind: PersistentVolumeClaim #ระบุว่าเป็น Object ประเภท PVC
+metadata:
+  name: landing
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
