@@ -49,11 +49,11 @@ pipeline {
 		stage('Build image') {
 			steps {
 				script {
-						container('docker') {
-							sh '''
-							    docker build -t registry.matador.ais.co.th/devops/landing-page:2.0.1 .
-							    docker images 
-							'''
+                    container('docker') {
+                        sh '''
+                            docker build -t registry.matador.ais.co.th/devops/landing-page:2.0.1 .
+                            docker images 
+                        '''
 					}
 				}
 			}
