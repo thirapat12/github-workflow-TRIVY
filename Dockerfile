@@ -1,4 +1,4 @@
-FROM lib.matador.ais.co.th/node:10.13.0 as build-stage 
+FROM node:10.13.0 as build-stage 
 
 WORKDIR /app
 COPY package*.json /app/
