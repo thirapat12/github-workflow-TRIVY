@@ -15,9 +15,18 @@ jobs:
     - name: Generate tarball from image
       run: |
         docker build -t ci:1.0.0 .
+        docker save -o vuln-image.tar ci:1.0.0
         
-    # - name: Run Trivy vulnerability scanner in tarball mode
-    #   uses: aquasecurity/trivy-action@master
-    #   with:
-    #     input: /github/workspace/vuln-image.tar
-    #     severity: 'CRITICAL,HIGH'
+    - name: Run Trivy vulnerability scanner in tarball mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        input: /github/workspace/vuln-image.tar
+        args: --format json --output-file result.json
+        output: result.json
+        severity: 'CRITICAL,HIGH'
+
+    - name: upload result
+      uses: actions/upload-artifact@v2
+      with:
+        name: result
+        path: result.json
