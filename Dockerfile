@@ -1,12 +1,13 @@
-FROM lib.matador.ais.co.th/node:10.13.0 as build-stage 
-
+FROM node:10.13.0 as build-stage 
+#FROM lib.matador.ais.co.th/node:10.13.0 as build-stage 
 WORKDIR /app
 COPY package*.json /app/
-RUN npm config set registry https://lib.matador.ais.co.th/repository/npm/
-RUN npm config set sass-binary-site https://lib.matador.ais.co.th/repository/node-sass/
-RUN npm install --verbose
+# RUN npm config set registry https://lib.matador.ais.co.th/repository/npm/
+# RUN npm config set sass-binary-site https://lib.matador.ais.co.th/repository/node-sass/
+RUN npm install
 COPY . .
 RUN npm run build-prod
 
-FROM lib.matador.ais.co.th/nginx:1.17.0-alpine
+FROM nginx:1.17.0-alpine
+#FROM lib.matador.ais.co.th/nginx:1.17.0-alpine
 COPY --from=build-stage /app/dist/ /usr/share/nginx/html
