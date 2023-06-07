@@ -34,15 +34,15 @@ jobs:
         docker build -t ci:1.0.0 .
         docker save -o vuln-image.tar ci:1.0.0
     
-    - name: Run Trivy vulnerability scanner build image
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: 'ci:1.0.0'
-        format: 'table'
-        exit-code: '1'
-        ignore-unfixed: true
-        vuln-type: 'os,library'
-        severity: 'CRITICAL,HIGH,MEDIUM'
+    # - name: Run Trivy vulnerability scanner build image
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     image-ref: 'ci:1.0.0'
+    #     format: 'table'
+    #     exit-code: '1'
+    #     ignore-unfixed: true
+    #     vuln-type: 'os,library'
+    #     severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Run Trivy vulnerability scanner in tarball mode
       uses: aquasecurity/trivy-action@master
