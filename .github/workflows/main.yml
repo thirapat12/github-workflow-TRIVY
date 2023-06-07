@@ -20,7 +20,7 @@ jobs:
 
     - name: Bump Version
       id: bump_and_tag
-      uses: konsentus/action.bump-version-and-tag@v2
+      uses: konsentus/action.bump-version-and-tag@v1
 
     # - name: Bump version and push tag
     #   id: tag_version
