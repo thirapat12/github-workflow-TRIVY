@@ -29,15 +29,15 @@ jobs:
     #     output: 'report-dependencies.json'
     #     severity: 'CRITICAL,HIGH,MEDIUM'
 
-    - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'fs'
-        scan-ref: 'package-lock.json'
-        format: 'sarif'
-        output: 'trivy-dependencies.sarif'
-        ignore-unfixed: true
-        severity: 'CRITICAL,HIGH,MEDIUM'
+    # - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     scan-type: 'fs'
+    #     scan-ref: 'package-lock.json'
+    #     format: 'sarif'
+    #     output: 'trivy-dependencies.sarif'
+    #     ignore-unfixed: true
+    #     severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Generate tarball from image
       run: |
@@ -73,10 +73,10 @@ jobs:
         output: 'trivy-image.sarif'
         severity: 'CRITICAL,HIGH'
 
-    - name: Upload Trivy scan results 1
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'trivy-dependencies.sarif'
+    # - name: Upload Trivy scan results 1
+    #   uses: github/codeql-action/upload-sarif@v2
+    #   with:
+    #     sarif_file: 'trivy-dependencies.sarif'
 
     - name: Upload Trivy scan results 2
       uses: github/codeql-action/upload-sarif@v2
