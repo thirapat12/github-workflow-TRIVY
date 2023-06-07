@@ -4,6 +4,7 @@ on:
     branches:
     - master
   pull_request:
+  
 jobs:
   build:
     name: POC Runner Personal
@@ -11,6 +12,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Bump version
+      uses: remorses/bump-version@js
+      with:
+          version_file: ./VERSION
+      env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 
     - name: Generate tarball from image
       run: |
