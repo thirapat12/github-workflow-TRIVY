@@ -19,14 +19,24 @@ jobs:
         node-version: 10
     - run: npm install
 
+    # - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     scan-type: 'fs'
+    #     scan-ref: 'package-lock.json'
+    #     ignore-unfixed: true
+    #     # format: 'table'
+    #     output: 'report-dependencies.json'
+    #     severity: 'CRITICAL,HIGH,MEDIUM'
+
     - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
         scan-ref: 'package-lock.json'
+        format: 'sarif'
+        output: 'trivy-dependencies.sarif'
         ignore-unfixed: true
-        # format: 'table'
-        output: 'report-dependencies.json'
         severity: 'CRITICAL,HIGH,MEDIUM'
 
     - name: Generate tarball from image
@@ -44,22 +54,43 @@ jobs:
     #     vuln-type: 'os,library'
     #     severity: 'CRITICAL,HIGH,MEDIUM'
 
+    # - name: Run Trivy vulnerability scanner
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     image-ref: 'ci:1.0.0'
+    #     format: 'sarif'
+    #     output: 'trivy-results.sarif'
+    #     exit-code: '1'
+    #     ignore-unfixed: true
+    #     vuln-type: 'os,library'
+    #     severity: 'CRITICAL,HIGH,MEDIUM'
+
     - name: Run Trivy vulnerability scanner in tarball mode
       uses: aquasecurity/trivy-action@master
       with:
         input: /github/workspace/vuln-image.tar
-        args: --format json --output-file result.json
-        output: report-image.json
+        format: 'sarif'
+        output: 'trivy-image.sarif'
         severity: 'CRITICAL,HIGH'
 
-    - name: upload result vul dependencies
-      uses: actions/upload-artifact@v2
+    - name: Upload Trivy scan results 1
+      uses: github/codeql-action/upload-sarif@v2
       with:
-        name: report-vul-dependencies
-        path: report-dependencies.json
+        sarif_file: 'trivy-dependencies.sarif'
 
-    - name: upload result vul image base
-      uses: actions/upload-artifact@v2
+    - name: Upload Trivy scan results 2
+      uses: github/codeql-action/upload-sarif@v2
       with:
-        name: report-vul-image
-        path: report-image.json
+        sarif_file: 'trivy-image.sarif'
+
+    # - name: upload result vul dependencies
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: report-vul-dependencies
+    #     path: report-dependencies.json
+
+    # - name: upload result vul image base
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: report-vul-image
+    #     path: report-image.json
