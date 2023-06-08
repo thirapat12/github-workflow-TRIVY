@@ -47,7 +47,7 @@ jobs:
         scan-ref: 'package-lock.json'
         ignore-unfixed: true
         format: template
-        template: '@contrib/html.tpl'
+        template: '@/contrib/html.tpl'
         output: 'report-dependencies.html'
         # format: 'table'
         # output: 'report-dependencies.json'
