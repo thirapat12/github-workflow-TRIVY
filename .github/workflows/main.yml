@@ -92,15 +92,25 @@ jobs:
         name: report-vuln-image.json
         path: 'report-image-${{ env.SHA }}.html'
 
-    # - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
-    #   uses: aquasecurity/trivy-action@master
-    #   with:
-    #     scan-type: 'fs'
-    #     scan-ref: 'package-lock.json'
-    #     format: 'sarif'
-    #     output: 'trivy-dependencies.sarif'
-    #     ignore-unfixed: true
-    #     severity: 'CRITICAL,HIGH,MEDIUM'
+    - name: Run Trivy vulnerability scanner in IaC mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'config'
+        format: template
+        template: '@/contrib/html.tpl'
+        output: 'report-config-${{ env.SHA }}.html'
+        hide-progress: false
+        # format: 'sarif'
+        # output: 'trivy-results.sarif'
+        exit-code: '1'
+        ignore-unfixed: true
+        severity: 'CRITICAL,HIGH'
+
+    - name: upload result vuln IaC mode
+      uses: actions/upload-artifact@v2
+      with:
+        name: report-vuln-config.json
+        path: 'report-config-${{ env.SHA }}.html'
 
     # - name: Generate tarball from image
     #   run: |
