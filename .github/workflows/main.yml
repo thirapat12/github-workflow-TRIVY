@@ -57,12 +57,13 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         tag: ${{ env.SHA }}
         build_file: ./Dockerfile
+        cache_registry: thirapat12/cache
         cache: true
       
     - name: Run Trivy vulnerability scanner build image
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+        image-ref: 'thirapat12/cache'
         # format: 'table'
         format: template
         template: '@/contrib/html.tpl'
