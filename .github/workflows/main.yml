@@ -61,6 +61,7 @@ jobs:
         build_file: ./Dockerfile
         cache: true
         cache_registry: thirapat12/thirapat12
+        cache_ttl: 1h
       
     - name: Run Trivy vulnerability scanner build image
       uses: aquasecurity/trivy-action@master
