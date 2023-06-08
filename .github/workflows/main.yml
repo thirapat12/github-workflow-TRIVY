@@ -24,16 +24,6 @@ jobs:
       env:
         SHA: ${{ env.SHA }}
 
-    - name: Kaniko build
-      uses: aevea/action-kaniko@master
-      with:
-        image: thirapat12/thirapat12
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        tag: ${{ env.SHA }}
-        build_file: ./Dockerfile
-        cache: true
-
     - name: Prepare node_modules
       uses: actions/setup-node@v2
       with:
@@ -48,16 +38,45 @@ jobs:
         ignore-unfixed: true
         format: template
         template: '@/contrib/html.tpl'
-        output: 'report-dependencies.html'
+        output: 'report-dependencies-${{ env.SHA }}.html'
         # format: 'table'
         # output: 'report-dependencies.json'
         severity: 'CRITICAL,HIGH,MEDIUM'
 
-    - name: upload result vul image base
+    - name: upload result vuln into package-lock.json
       uses: actions/upload-artifact@v2
       with:
-        name: report-vul-image
-        path: 'report-dependencies.html'
+        name: report-vuln-packages-lock.json
+        path: 'report-dependencies-${{ env.SHA }}.html'
+
+    - name: Kaniko build
+      uses: aevea/action-kaniko@master
+      with:
+        image: thirapat12/thirapat12
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        tag: ${{ env.SHA }}
+        build_file: ./Dockerfile
+        cache: true
+      
+    - name: Run Trivy vulnerability scanner build image
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+        # format: 'table'
+        format: template
+        template: '@/contrib/html.tpl'
+        output: 'report-image-${{ env.SHA }}.html'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH,MEDIUM'
+
+    - name: upload result vuln base image
+      uses: actions/upload-artifact@v2
+      with:
+        name: report-vuln-image.json
+        path: 'report-image-${{ env.SHA }}.html'
 
     # - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
     #   uses: aquasecurity/trivy-action@master
