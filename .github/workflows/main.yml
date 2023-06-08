@@ -59,8 +59,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         tag: ${{ env.SHA }}
         build_file: ./Dockerfile
-        cache_registry: thirapat12/thirapat12
         cache: true
+        cache_registry: aevea/cache
+    - run: ls -la aevea/cache
       
     - name: Run Trivy vulnerability scanner build image
       uses: aquasecurity/trivy-action@master
