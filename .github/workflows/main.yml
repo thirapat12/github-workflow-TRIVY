@@ -27,13 +27,12 @@ jobs:
     - name: Kaniko build
       uses: aevea/action-kaniko@master
       with:
-        image: thirapat12
+        image: thirapat12/thirapat12
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         tags: ${{ env.SHA }}
         build_file: ./Dockerfile
         cache: true
-        cache_registry: aevea/cache
 
 
     # - name: Login to Docker Hub for Thirapat Registry
