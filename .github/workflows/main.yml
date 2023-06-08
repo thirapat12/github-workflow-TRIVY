@@ -31,7 +31,7 @@ jobs:
         node-version: 10
     # command exec install
     - run: npm install
-    # 
+    # Trivy scan type fs file package-lock.json (nodejs)
     - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
       uses: aquasecurity/trivy-action@master
       with:
@@ -67,12 +67,17 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+    - run: |
+        docker pull thirapat12/thirapat12:${{ env.SHA }}
+        docker save -o vuln-image.tar thirapat12/thirapat12:${{ env.SHA }}
+
+    # Trivy Scanner Image & export report to format template  
     - name: Run Trivy vulnerability scanner build image
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+        # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
         # format: 'table'
+        input: /github/workspace/vuln-image.tar
         format: template
         template: '@/contrib/html.tpl'
         output: 'report-image-${{ env.SHA }}.html'
