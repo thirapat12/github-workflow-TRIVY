@@ -30,7 +30,7 @@ jobs:
         image: thirapat12/thirapat12
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        tags: ${{ env.SHA }}
+        tag: ${{ env.SHA }}
         build_file: ./Dockerfile
         cache: true
 
