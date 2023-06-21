@@ -23,7 +23,7 @@ jobs:
         SHA: ${{ steps.short-sha.outputs.sha }}
     - run: echo $SHA
       env:
-        SHA: ${{ env.SHA }}
+        SHA: ${{ env.SHA }} > version.txt
     # Prepare node version for install,build
     - name: Prepare node_modules
       uses: actions/setup-node@v2
@@ -71,6 +71,7 @@ jobs:
         docker pull thirapat12/thirapat12:${{ env.SHA }}
         docker save -o vuln-image.tar thirapat12/thirapat12:${{ env.SHA }}
         ls -lrt
+        cat version.txt
 
     # Trivy Scanner Image & export report to format template  
     - name: Run Trivy vulnerability scanner build image
