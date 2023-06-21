@@ -70,6 +70,7 @@ jobs:
     - run: |
         docker pull thirapat12/thirapat12:${{ env.SHA }}
         docker save -o vuln-image.tar thirapat12/thirapat12:${{ env.SHA }}
+        ls -lrt
 
     # Trivy Scanner Image & export report to format template  
     - name: Run Trivy vulnerability scanner build image
