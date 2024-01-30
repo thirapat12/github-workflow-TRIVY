@@ -1,11 +1,14 @@
 name: Github Workflow CI/CD
 on:
   pull_request:
+    types:
+      - closed
     branches:
       - master
 
 jobs:
   build:
+    # if: github.event.pull_request.merged == true
     name: Prepare Workflow
     runs-on: ubuntu-20.04
     steps:
