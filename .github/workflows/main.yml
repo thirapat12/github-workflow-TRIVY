@@ -2,7 +2,8 @@ name: Github Workflow CI/CD
 on:
   pull_request:
     types:
-      - closed
+      # - closed
+      - opened
     branches:
       - master
 
