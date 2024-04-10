@@ -62,7 +62,7 @@ jobs:
           with:
             sarif_file: 'trivy-results.sarif'
 
-  Trivy-image-tar:
+  Trivy-image-scan:
     needs: [Trivy-fs]
     runs-on: ubuntu-latest
     steps:
@@ -102,61 +102,62 @@ jobs:
           ls -lrt
           cat version.txt
 
-      # Trivy Scanner Image & export report to format template  
-      - name: Run Trivy vulnerability scanner build image
-        uses: aquasecurity/trivy-action@master
-        with:
-          # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
-          # format: 'table'
-          input: /github/workspace/vuln-image.tar
-          format: template
-          template: '@/contrib/html.tpl'
-          output: 'report-image-${{ env.SHA }}.html'
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH,MEDIUM'
+    #   # Trivy Scanner Image & export report to format template  
+    #   - name: Run Trivy vulnerability scanner build image
+    #     uses: aquasecurity/trivy-action@master
+    #     with:
+    #       # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+    #       # format: 'table'
+    #       input: /github/workspace/vuln-image.tar
+    #       format: template
+    #       template: '@/contrib/html.tpl'
+    #       output: 'report-image-${{ env.SHA }}.html'
+    #       exit-code: '0'
+    #       ignore-unfixed: true
+    #       vuln-type: 'os,library'
+    #       severity: 'CRITICAL,HIGH,MEDIUM'
 
-      - name: upload result vuln base image
-        uses: actions/upload-artifact@v2
-        with:
-          name: report-vuln-image.json
-          path: 'report-image-${{ env.SHA }}.html'
+    #   - name: upload result vuln base image
+    #     uses: actions/upload-artifact@v2
+    #     with:
+    #       name: report-vuln-image.json
+    #       path: 'report-image-${{ env.SHA }}.html'
 
-      # Trivy Scanner Image & export report to format template  
-      - name: Run Trivy vulnerability scanner build image
-        uses: aquasecurity/trivy-action@master
-        with:
-          # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
-          # format: 'table'
-          input: /github/workspace/vuln-image.tar
-          format: 'sarif'
-        #   template: '@/contrib/html.tpl'
-          output: 'report-image-${{ env.SHA }}.sarif'
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH,MEDIUM'
+    #   # Trivy Scanner Image & export report to format template  
+    #   - name: Run Trivy vulnerability scanner build image
+    #     uses: aquasecurity/trivy-action@master
+    #     with:
+    #       # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+    #       # format: 'table'
+    #       input: /github/workspace/vuln-image.tar
+    #       format: 'sarif'
+    #     #   template: '@/contrib/html.tpl'
+    #       output: 'report-image-${{ env.SHA }}.sarif'
+    #       exit-code: '0'
+    #       ignore-unfixed: true
+    #       vuln-type: 'os,library'
+    #       severity: 'CRITICAL,HIGH,MEDIUM'
           
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: 'report-image-${{ env.SHA }}.sarif'
+    #   - name: Upload Trivy scan results to GitHub Security tab
+    #     uses: github/codeql-action/upload-sarif@v2
+    #     with:
+    #       sarif_file: 'report-image-${{ env.SHA }}.sarif'
 
       - name: Run Trivy vulnerability scanner to scan your private registry
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
           format: 'sarif'
-          output: 'trivy-results.sarif'
+          output: 'trivy-results-${{ env.SHA }}.sarif'
+          ignore-unfixed: true
         env:
           TRIVY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           TRIVY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
   
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: 'trivy-results-${{ env.SHA }}.sarif'
 
 #   trivy:
 #     needs: build
