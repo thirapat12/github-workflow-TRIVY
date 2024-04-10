@@ -21,8 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
-        - uses: aquasecurity/trivy-action@master
-        with:
+          uses: aquasecurity/trivy-action@master
+          with:
             scan-type: 'fs'
             scan-ref: 'package-lock.json'
             ignore-unfixed: true
