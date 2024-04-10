@@ -19,7 +19,7 @@ jobs:
         run: npm install
 
   trivy:
-    # run-on: ubuntu-latest
+    run-on: ubuntu-latest
     steps:      
         - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
         - uses: aquasecurity/trivy-action@master
