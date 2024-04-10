@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  Trivy-FS:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
           with:
             name: report-vuln-packages-lock.json
             path: 'report-dependencies.html'    
-                    
+
 #   trivy:
 #     needs: build
 #     runs-on: ubuntu-latest
