@@ -11,7 +11,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  Trivy-FS:
+  Trivy-fs:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v4
@@ -61,6 +61,87 @@ jobs:
           uses: github/codeql-action/upload-sarif@v2
           with:
             sarif_file: 'trivy-results.sarif'
+
+  Trivy-image:
+    needs: [Trivy-fs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # echo commitid sourcecode
+      - uses: benjlevesque/short-sha@v2.2
+        id: short-sha
+        with:
+          length: 7
+      - run: echo $SHA
+        env:
+          SHA: ${{ steps.short-sha.outputs.sha }}
+      - run: echo $SHA
+        env:
+          SHA: ${{ env.SHA }}
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          image: thirapat12/thirapat12
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          tag: ${{ env.SHA }}
+          build_file: ./Dockerfile
+          cache: true
+          cache_registry: thirapat12/thirapat12
+
+      - name: Login to Docker Hub Private Repository
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - run: |
+          docker pull thirapat12/thirapat12:${{ env.SHA }}
+          docker save -o vuln-image.tar thirapat12/thirapat12:${{ env.SHA }}
+          echo ${{ env.SHA }} > version.txt
+          ls -lrt
+          cat version.txt
+
+      # Trivy Scanner Image & export report to format template  
+      - name: Run Trivy vulnerability scanner build image
+        uses: aquasecurity/trivy-action@master
+        with:
+          # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+          # format: 'table'
+          input: /github/workspace/vuln-image.tar
+          format: template
+          template: '@/contrib/html.tpl'
+          output: 'report-image-${{ env.SHA }}.html'
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+
+      - name: upload result vuln base image
+        uses: actions/upload-artifact@v2
+        with:
+          name: report-vuln-image.json
+          path: 'report-image-${{ env.SHA }}.html'
+
+      # Trivy Scanner Image & export report to format template  
+      - name: Run Trivy vulnerability scanner build image
+        uses: aquasecurity/trivy-action@master
+        with:
+          # image-ref: 'thirapat12/thirapat12:${{ env.SHA }}'
+          # format: 'table'
+          input: /github/workspace/vuln-image.tar
+          format: 'sarif'
+        #   template: '@/contrib/html.tpl'
+          output: 'report-image-${{ env.SHA }}.sarif'
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+          
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'report-image-${{ env.SHA }}.sarif'
 
 #   trivy:
 #     needs: build
