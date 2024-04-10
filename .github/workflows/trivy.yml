@@ -29,6 +29,12 @@ jobs:
             # output: 'report-dependencies.json'
             severity: 'CRITICAL,HIGH,MEDIUM'
 
+        - name: upload result vuln into package-lock.json
+          uses: actions/upload-artifact@v2
+          with:
+            name: report-vuln-packages-lock.json
+            path: 'report-dependencies.html'    
+                    
 #   trivy:
 #     needs: build
 #     runs-on: ubuntu-latest
