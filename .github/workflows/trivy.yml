@@ -18,6 +18,7 @@ jobs:
           run: npm install
 
   trivy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
         - uses: aquasecurity/trivy-action@master
