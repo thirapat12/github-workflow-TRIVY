@@ -5,6 +5,11 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
+
 jobs:
   Trivy-FS:
     runs-on: ubuntu-latest
