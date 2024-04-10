@@ -35,6 +35,26 @@ jobs:
             name: report-vuln-packages-lock
             path: 'report-dependencies.html'    
 
+        - name: Run Trivy vulnerability scanner fs dependency into sarif
+          uses: aquasecurity/trivy-action@master
+          with:
+            scan-type: 'fs'
+            scan-ref: 'package-lock.json'
+            ignore-unfixed: true
+            format: 'sarif'
+            output: 'trivy-results.sarif'
+            # format: template
+            # template: '@/contrib/html.tpl'
+            # output: 'report-dependencies.html'
+            # format: 'table'
+            # output: 'report-dependencies.json'
+            severity: 'CRITICAL,HIGH,MEDIUM'
+
+        - name: Upload Trivy scan results to GitHub Security 
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: 'trivy-results.sarif'
+
 #   trivy:
 #     needs: build
 #     runs-on: ubuntu-latest
