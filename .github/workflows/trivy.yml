@@ -8,28 +8,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 10.24.1
-      - name: Install dependencies
-        run: npm install
+        - uses: actions/checkout@v4
+        - name: Use Node.js
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 10.24.1
+        - name: Install dependencies
+          run: npm install
 
   trivy:
-    run-on: ubuntu-latest
-    steps:      
+    runs-on: ubuntu-latest
+    steps:
         - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
         - uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
-          scan-ref: 'package-lock.json'
-          ignore-unfixed: true
-          format: template
-          template: '@/contrib/html.tpl'
-          output: 'report-dependencies.html'
-          # format: 'table'
-          # output: 'report-dependencies.json'
-          severity: 'CRITICAL,HIGH,MEDIUM'
+            scan-type: 'fs'
+            scan-ref: 'package-lock.json'
+            ignore-unfixed: true
+            format: template
+            template: '@/contrib/html.tpl'
+            output: 'report-dependencies.html'
+            # format: 'table'
+            # output: 'report-dependencies.json'
+            severity: 'CRITICAL,HIGH,MEDIUM'
