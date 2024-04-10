@@ -29,10 +29,10 @@ jobs:
             # output: 'report-dependencies.json'
             severity: 'CRITICAL,HIGH,MEDIUM'
 
-        - name: upload result vuln into package-lock.json
+        - name: upload result vuln into package-lock.json to zip
           uses: actions/upload-artifact@v2
           with:
-            name: report-vuln-packages-lock.json
+            name: report-vuln-packages-lock
             path: 'report-dependencies.html'    
 
 #   trivy:
