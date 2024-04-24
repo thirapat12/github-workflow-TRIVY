@@ -96,7 +96,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - run: |
-          docker pull thirapat12/thirapat12:${{ env.SHA }}
+          docker pull thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
           docker save -o vuln-image.tar thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
           echo ${{ env.SHA }} > version.txt
           ls -lrt
