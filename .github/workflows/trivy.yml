@@ -19,8 +19,22 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 10.24.1
+        - name: Checkout argocd-logo
+          uses: actions/checkout@v4
+          with:
+            repository: thirapat12/argocd-logo
+            ref: main
+            path: argocd-logo
+        - name: Checkout argocd-logo
+          uses: actions/checkout@v4
+          with:
+            repository: thirapat12/cv-profile
+            ref: master
+            path: cv-profile
         - name: Install dependencies
-          run: npm install
+          run: |
+            ls -la
+            npm install
         - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
           uses: aquasecurity/trivy-action@master
           with:
