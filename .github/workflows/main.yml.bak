@@ -9,6 +9,7 @@ on:
       - master
       - features/**
 
+
 jobs:
   build:
     # if: github.event.pull_request.merged == true
