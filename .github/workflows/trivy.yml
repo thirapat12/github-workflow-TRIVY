@@ -92,18 +92,7 @@ jobs:
         run: echo "LOWER_REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Print lowercase repository name
-        run: echo "Lowercase Repo Name: ${{ env.LOWER_REPO_NAME }}"
-        
-      # - name: Kaniko build
-      #   uses: aevea/action-kaniko@master
-      #   with:
-      #     image: thirapat12/thirapat12
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-      #     tag: ${{ github.ref_name }}-${{ env.SHA }}
-      #     build_file: ./Dockerfile
-      #     cache: true
-      #     cache_registry: thirapat12/thirapat12
+        run: echo Lowercase Repo Name: "${{ env.LOWER_REPO_NAME }}"
 
       - name: Login to Docker Hub Private Repository
         uses: docker/login-action@v3
@@ -111,6 +100,7 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       # - run: |
       #     docker pull thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
       #     docker save -o vuln-image.tar thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
