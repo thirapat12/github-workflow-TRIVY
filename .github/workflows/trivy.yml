@@ -142,7 +142,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.6
         if: always()
         with:
-          name: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          name: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}
           path: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
 
       - name: Trivy vulnerability scanner image & export report to format template sarif 
