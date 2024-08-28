@@ -143,7 +143,7 @@ jobs:
         if: always()
         with:
           name: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          path: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}.html
+          path: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
 
       - name: Trivy vulnerability scanner image & export report to format template sarif 
         uses: aquasecurity/trivy-action@0.24.0
@@ -160,7 +160,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif    
+          sarif_file: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif
 
       - name: Push image
         if: success()  # Only push the image if the previous steps succeeded
