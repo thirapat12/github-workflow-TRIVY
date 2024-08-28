@@ -91,8 +91,7 @@ jobs:
       - name: Convert repository name to lowercase
         run: echo "LOWER_REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
-      - name: Print lowercase repository name
-        run: echo Lowercase Repo Name: "${{ env.LOWER_REPO_NAME }}"
+      - run: echo "${{ env.LOWER_REPO_NAME }}"
 
       - name: Login to Docker Hub Private Repository
         uses: docker/login-action@v3
@@ -100,19 +99,6 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # - run: |
-      #     docker pull thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
-      #     docker save -o vuln-image.tar thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
-      #     echo ${{ env.SHA }} > version.txt
-      #     ls -lrt
-      #     cat version.txt
-
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
