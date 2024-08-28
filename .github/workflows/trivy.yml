@@ -8,77 +8,70 @@ on:
 permissions:
   contents: read
   security-events: write
-  pull-requests: read
+  # pull-requests: read
   actions: write
 
 jobs:
-  Trivy-fs:
-    runs-on: ubuntu-latest
-    steps:
-        - uses: actions/checkout@v4
-        - name: Use Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 10.24.1
-        - name: Checkout argocd-logo
-          uses: actions/checkout@v4
-          with:
-            repository: thirapat12/argocd-logo
-            ref: main
-            path: argocd-logo
-        - name: Checkout argocd-logo
-          uses: actions/checkout@v4
-          with:
-            repository: thirapat12/cv-profile
-            ref: master
-            path: cv-profile
-        - name: Install dependencies
-          run: |
-            ls -la
-            npm install
-        - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
-          uses: aquasecurity/trivy-action@master
-          with:
-            scan-type: 'fs'
-            scan-ref: '.'
-            ignore-unfixed: true
-            format: template
-            template: '@/contrib/html.tpl'
-            output: 'report-vuln-repositories.html'
-            # format: 'table'
-            # output: 'report-dependencies.json'
-            severity: 'CRITICAL,HIGH,MEDIUM'
+        # - name: Checkout argocd-logo
+        #   uses: actions/checkout@v4
+        #   with:
+        #     repository: thirapat12/argocd-logo
+        #     ref: main
+        #     path: argocd-logo
+        # - name: Checkout argocd-logo
+        #   uses: actions/checkout@v4
+        #   with:
+        #     repository: thirapat12/cv-profile
+        #     ref: master
+        #     path: cv-profile
+        # - name: Install dependencies
+        #   run: |
+        #     ls -la
+        #     npm install
+        # - name: Run Trivy vulnerability scanner fs dependency into package-lock.json
+        #   uses: aquasecurity/trivy-action@master
+        #   with:
+        #     scan-type: 'fs'
+        #     scan-ref: '.'
+        #     ignore-unfixed: true
+        #     exit-code: '0'
+        #     format: template
+        #     template: '@/contrib/html.tpl'
+        #     output: 'report-vuln-repositories.html'
+        #     # format: 'table'
+        #     # output: 'report-dependencies.json'
+        #     severity: 'CRITICAL,HIGH,MEDIUM'
 
-        - name: upload result vuln into package-lock.json to zip
-          uses: actions/upload-artifact@v2
-          with:
-            name: report-vuln-repositories
-            path: 'report-vuln-repositories.html'    
+        # - name: upload result vuln into package-lock.json to zip
+        #   uses: actions/upload-artifact@v2
+        #   with:
+        #     name: report-vuln-repositories
+        #     path: 'report-vuln-repositories.html'    
 
-        - name: Run Trivy vulnerability scanner in repo mode
-          uses: aquasecurity/trivy-action@master
-          with:
-            scan-type: 'fs'
-            # scan-ref: 'package-lock.json'
-            ignore-unfixed: true
-            format: 'sarif'
-            output: 'trivy-results.sarif'
-            # template: '@/contrib/sarif.tpl'
-            # output: 'trivy-results.sarif'
-            # format: template
-            # template: '@/contrib/html.tpl'
-            # output: 'report-dependencies.html'
-            # format: 'table'
-            # output: 'report-dependencies.json'
-            severity: 'CRITICAL,HIGH,MEDIUM'
+        # - name: Run Trivy vulnerability scanner in repo mode
+        #   uses: aquasecurity/trivy-action@master
+        #   with:
+        #     scan-type: 'fs'
+        #     # scan-ref: 'package-lock.json'
+        #     ignore-unfixed: true
+        #     format: 'sarif'
+        #     output: 'trivy-results.sarif'
+        #     # template: '@/contrib/sarif.tpl'
+        #     # output: 'trivy-results.sarif'
+        #     # format: template
+        #     # template: '@/contrib/html.tpl'
+        #     # output: 'report-dependencies.html'
+        #     # format: 'table'
+        #     # output: 'report-dependencies.json'
+        #     severity: 'CRITICAL,HIGH,MEDIUM'
 
-        - name: Upload Trivy scan results to GitHub Security tab 
-          uses: github/codeql-action/upload-sarif@v3
-          with:
-            sarif_file: 'trivy-results.sarif'
+        # - name: Upload Trivy scan results to GitHub Security tab 
+        #   uses: github/codeql-action/upload-sarif@v3
+        #   with:
+        #     sarif_file: 'trivy-results.sarif'
 
   Trivy-image-scan:
-    needs: [Trivy-fs]
+    # needs: [Trivy-fs]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -94,28 +87,85 @@ jobs:
       - run: echo $SHA
         env:
           SHA: ${{ env.SHA }}
-      - name: Kaniko build
-        uses: aevea/action-kaniko@master
-        with:
-          image: thirapat12/thirapat12
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          tag: ${{ github.ref_name }}-${{ env.SHA }}
-          build_file: ./Dockerfile
-          cache: true
-          cache_registry: thirapat12/thirapat12
+      # - name: Kaniko build
+      #   uses: aevea/action-kaniko@master
+      #   with:
+      #     image: thirapat12/thirapat12
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #     tag: ${{ github.ref_name }}-${{ env.SHA }}
+      #     build_file: ./Dockerfile
+      #     cache: true
+      #     cache_registry: thirapat12/thirapat12
 
       - name: Login to Docker Hub Private Repository
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
+          registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - run: |
-          docker pull thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
-          docker save -o vuln-image.tar thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
-          echo ${{ env.SHA }} > version.txt
-          ls -lrt
-          cat version.txt
+      # - run: |
+      #     docker pull thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
+      #     docker save -o vuln-image.tar thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}
+      #     echo ${{ env.SHA }} > version.txt
+      #     ls -lrt
+      #     cat version.txt
+
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          cache-from: type=registry,ref=thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          cache-to: type=inline
+
+      - name: Trivy vulnerability scanner image & export report to format template html
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          format: template
+          template: '@/contrib/html.tpl'
+          output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+      - name: Upload Trivy scan results HTML
+        uses: actions/upload-artifact@v4.3.6
+        if: always()
+        with:
+          name: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}-${{ env.SHA }}
+          path: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}-${{ env.SHA }}.html
+      - name: Trivy vulnerability scanner image & export report to format template sarif 
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          format: 'sarif'
+          output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: ${{ inputs.registry }}-${{ steps.get-repo.outputs.repo }}-${{ github.ref_name }}-${{ steps.bump.outputs.new-version }}.sarif        
+      - name: Push image
+        if: success()  # Only push the image if the previous steps succeeded
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          cache-from: type=registry,ref=thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          cache-to: type=inline
 
     #   # Trivy Scanner Image & export report to format template  
     #   - name: Run Trivy vulnerability scanner build image
@@ -158,21 +208,21 @@ jobs:
     #     with:
     #       sarif_file: 'report-image-${{ env.SHA }}.sarif'
 
-      - name: Run Trivy vulnerability scanner to scan your private registry
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}'
-          format: 'sarif'
-          output: 'trivy-results-${{ env.SHA }}.sarif'
-          ignore-unfixed: true
-        env:
-          TRIVY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          TRIVY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Run Trivy vulnerability scanner to scan your private registry
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: 'thirapat12/thirapat12:${{ github.ref_name }}-${{ env.SHA }}'
+      #     format: 'sarif'
+      #     output: 'trivy-results-${{ env.SHA }}.sarif'
+      #     ignore-unfixed: true
+      #   env:
+      #     TRIVY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     TRIVY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
   
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: 'trivy-results-${{ env.SHA }}.sarif'
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: 'trivy-results-${{ env.SHA }}.sarif'
 
 #   trivy:
 #     needs: build
