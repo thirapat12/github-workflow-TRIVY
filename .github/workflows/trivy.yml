@@ -87,6 +87,13 @@ jobs:
       - run: echo $SHA
         env:
           SHA: ${{ env.SHA }}
+
+      - name: Convert repository name to lowercase
+        run: echo "LOWER_REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Print lowercase repository name
+        run: echo "Lowercase Repo Name: ${{ env.LOWER_REPO_NAME }}"
+        
       # - name: Kaniko build
       #   uses: aevea/action-kaniko@master
       #   with:
