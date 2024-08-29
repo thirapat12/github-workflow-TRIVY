@@ -88,6 +88,8 @@ jobs:
         env:
           SHA: ${{ env.SHA }}
 
+      - run: echo '${{ github_repository_name }}'
+
       - name: Convert repository name to lowercase
         run: echo "LOWER_REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
