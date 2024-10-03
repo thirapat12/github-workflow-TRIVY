@@ -70,91 +70,102 @@ jobs:
         #   with:
         #     sarif_file: 'trivy-results.sarif'
 
-  Trivy-image-scan:
-    # needs: [Trivy-fs]
-    runs-on: ubuntu-latest
+  Maven:
+    runs-on: ubuntu-latest      
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      # echo commitid sourcecode
-      - uses: benjlevesque/short-sha@v2.2
-        id: short-sha
+      - name: maven
+        uses: actions/setup-java@v3
         with:
-          length: 7
-      - run: echo $SHA
-        env:
-          SHA: ${{ steps.short-sha.outputs.sha }}
-      - run: echo $SHA
-        env:
-          SHA: ${{ env.SHA }}
+          distribution: 'temurin'
+          java-version: '17'
+          # java-version: ${{ inputs.unit-test-java-version }}
+          cache: 'maven'
 
-      - run: echo '${{ github.repository }}'
+  # Trivy-image-scan:
+  #   # needs: [Trivy-fs]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #     # echo commitid sourcecode
+  #     - uses: benjlevesque/short-sha@v2.2
+  #       id: short-sha
+  #       with:
+  #         length: 7
+  #     - run: echo $SHA
+  #       env:
+  #         SHA: ${{ steps.short-sha.outputs.sha }}
+  #     - run: echo $SHA
+  #       env:
+  #         SHA: ${{ env.SHA }}
 
-      - name: Convert repository name to lowercase
-        run: echo "LOWER_REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+  #     - run: echo '${{ github.repository }}'
 
-      - run: echo "${{ env.LOWER_REPO_NAME }}"
+  #     - name: Convert repository name to lowercase
+  #       run: echo "LOWER_REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
-      - name: Login to Docker Hub Private Repository
-        uses: docker/login-action@v3
-        with:
-          registry: docker.io
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - run: echo "${{ env.LOWER_REPO_NAME }}"
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: false
-          tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          cache-from: type=registry,ref=thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          cache-to: type=inline
+  #     - name: Login to Docker Hub Private Repository
+  #       uses: docker/login-action@v3
+  #       with:
+  #         registry: docker.io
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Trivy vulnerability scanner image & export report to format template html
-        uses: aquasecurity/trivy-action@0.24.0
-        with:
-          image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          format: template
-          template: '@/contrib/html.tpl'
-          output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+  #     - name: Build and push
+  #       uses: docker/build-push-action@v6
+  #       with:
+  #         context: .
+  #         push: false
+  #         tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+  #         cache-from: type=registry,ref=thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+  #         cache-to: type=inline
 
-      - name: Upload Trivy scan results HTML
-        uses: actions/upload-artifact@v4.3.6
-        if: always()
-        with:
-          name: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}
-          path: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
+  #     - name: Trivy vulnerability scanner image & export report to format template html
+  #       uses: aquasecurity/trivy-action@0.24.0
+  #       with:
+  #         image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+  #         format: template
+  #         template: '@/contrib/html.tpl'
+  #         output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
+  #         exit-code: '0'
+  #         ignore-unfixed: true
+  #         vuln-type: 'os,library'
+  #         severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
-      - name: Trivy vulnerability scanner image & export report to format template sarif 
-        uses: aquasecurity/trivy-action@0.24.0
-        with:
-          image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          format: 'sarif'
-          output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+  #     - name: Upload Trivy scan results HTML
+  #       uses: actions/upload-artifact@v4.3.6
+  #       if: always()
+  #       with:
+  #         name: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}
+  #         path: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
 
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif
+  #     - name: Trivy vulnerability scanner image & export report to format template sarif 
+  #       uses: aquasecurity/trivy-action@0.24.0
+  #       with:
+  #         image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+  #         format: 'sarif'
+  #         output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif
+  #         exit-code: '1'
+  #         ignore-unfixed: true
+  #         vuln-type: 'os,library'
+  #         severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
-      - name: Push image
-        if: success()  # Only push the image if the previous steps succeeded
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          cache-from: type=registry,ref=thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
-          cache-to: type=inline
+  #     - name: Upload Trivy scan results to GitHub Security tab
+  #       uses: github/codeql-action/upload-sarif@v3
+  #       if: always()
+  #       with:
+  #         sarif_file: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.sarif
+
+  #     - name: Push image
+  #       if: success()  # Only push the image if the previous steps succeeded
+  #       uses: docker/build-push-action@v6
+  #       with:
+  #         push: true
+  #         tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+  #         cache-from: type=registry,ref=thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+  #         cache-to: type=inline
 
     #   # Trivy Scanner Image & export report to format template  
     #   - name: Run Trivy vulnerability scanner build image
