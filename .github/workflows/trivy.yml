@@ -73,7 +73,12 @@ jobs:
   Maven:
     runs-on: ubuntu-latest      
     steps:
-      - run: echo "Short SHA: ${GITHUB_SHA::7}"
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - run: echo "Short SHA: ${{ GITHUB_SHA::7 }}"
+      - run: echo '${{ github.repository }}'
+      
         # env:
         #   SHA: ${{ steps.short-sha.outputs.sha }}
       # - name: maven
