@@ -73,13 +73,16 @@ jobs:
   Maven:
     runs-on: ubuntu-latest      
     steps:
-      - name: maven
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-          # java-version: ${{ inputs.unit-test-java-version }}
-          cache: 'maven'
+      - run: echo "Short SHA: ${GITHUB_SHA::7}"
+        # env:
+        #   SHA: ${{ steps.short-sha.outputs.sha }}
+      # - name: maven
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: 'temurin'
+      #     java-version: '17'
+      #     # java-version: ${{ inputs.unit-test-java-version }}
+      #     cache: 'maven'
 
   # Trivy-image-scan:
   #   # needs: [Trivy-fs]
