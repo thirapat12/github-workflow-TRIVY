@@ -103,12 +103,6 @@ jobs:
           path: ${{ github.workspace }}/.cache/trivy
           key: cache-trivy-${{ steps.date.outputs.date }}
 
-      - name: Manual Trivy Setup
-        uses: aquasecurity/setup-trivy@v0.2.0
-        with:
-          cache: true
-          version: v0.56.1
-
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -124,6 +118,7 @@ jobs:
           template: '@/contrib/html.tpl'
           output: thirapat12/thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
+          cache-dir: $GITHUB_WORKSPACE/.cache/trivy
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
