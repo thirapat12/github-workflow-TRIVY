@@ -75,16 +75,54 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+        
+      - name: Setup oras
+        uses: oras-project/setup-oras@v1
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Download and extract the vulnerability DB
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.cache/trivy/db
+          oras pull ghcr.io/aquasecurity/trivy-db:2
+          tar -xzf db.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/db
+          rm db.tar.gz
+
+      - name: Download and extract the Java DB
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.cache/trivy/java-db
+          oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          tar -xzf javadb.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/java-db
+          rm javadb.tar.gz
+
+      - name: Cache DBs
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ github.workspace }}/.cache/trivy
+          key: cache-trivy-${{ steps.date.outputs.date }}
+      # - name: setup db trivy
+        
+      # - name: scripts
+      #   run: | 
+      #     TRIVY_TEMP_DIR=$(mktemp -d)
+      #     trivy --cache-dir $TRIVY_TEMP_DIR image --download-db-only
+      #     tar -cf ./db.tar.gz -C $TRIVY_TEMP_DIR/db metadata.json trivy.db
+      #     rm -rf $TRIVY_TEMP_DIR
 
       - name: Run Trivy Scan
         uses: aquasecurity/trivy-action@master
-        env:
-          TRIVY_DB_REPOSITORY: "docker://thirapat12/aquasecurity" # Replace with your custom DB URL
+        # env:
+        #   TRIVY_DB_REPOSITORY: "db.tar.gz" # Replace with your custom DB URL
         with:
           scan-type: "fs"
           severity: "HIGH,CRITICAL"
           ignore-unfixed: true
           exit-code: "1"
+        env:
+          TRIVY_SKIP_DB_UPDATE: true
+          TRIVY_SKIP_JAVA_DB_UPDATE: true
       
         # env:
         #   SHA: ${{ steps.short-sha.outputs.sha }}
