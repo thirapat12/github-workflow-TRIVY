@@ -103,6 +103,12 @@ jobs:
           path: ${{ github.workspace }}/.cache/trivy
           key: cache-trivy-${{ steps.date.outputs.date }}
 
+      - name: Manual Trivy Setup
+        uses: aquasecurity/setup-trivy@v0.2.0
+        with:
+          cache: true
+          version: v0.56.1
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
