@@ -118,7 +118,6 @@ jobs:
         with:
           output: trivy-report.json
           format: json
-          exit-code: 0
           scan-type: "fs"
           severity: "HIGH,CRITICAL"
           ignore-unfixed: true
