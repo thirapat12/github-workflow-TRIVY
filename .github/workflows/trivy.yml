@@ -73,21 +73,18 @@ jobs:
   Maven:
     runs-on: ubuntu-latest      
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
-      # - name: Display Short Commit SHA
-      #   run: echo "Short SHA: ${{ github.sha }}" | cut -c1-7
-      - uses: benjlevesque/short-sha@v2.2
-        id: short-sha
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy Scan
+        uses: aquasecurity/trivy-action@master
+        env:
+          TRIVY_DB_REPOSITORY: "https://your-custom-db-url/path/to/db" # Replace with your custom DB URL
         with:
-          length: 7
-      - run: echo $SHA
-        env:
-          SHA: ${{ steps.short-sha.outputs.sha }}
-      - run: echo $SHA
-        env:
-          SHA: ${{ env.SHA }}
+          scan-type: "fs"
+          severity: "HIGH,CRITICAL"
+          ignore-unfixed: true
+          exit-code: "1"
       
         # env:
         #   SHA: ${{ steps.short-sha.outputs.sha }}
