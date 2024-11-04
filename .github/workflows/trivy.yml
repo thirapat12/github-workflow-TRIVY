@@ -79,7 +79,7 @@ jobs:
       - name: Run Trivy Scan
         uses: aquasecurity/trivy-action@master
         env:
-          TRIVY_DB_REPOSITORY: "acricdplatform.azurecr.io/aquasecurity/trivy-db" # Replace with your custom DB URL
+          TRIVY_DB_REPOSITORY: "thirapat12/aquasecurity" # Replace with your custom DB URL
         with:
           scan-type: "fs"
           severity: "HIGH,CRITICAL"
