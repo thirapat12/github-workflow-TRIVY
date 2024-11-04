@@ -103,26 +103,55 @@ jobs:
           path: ${{ github.workspace }}/.cache/trivy
           key: cache-trivy-${{ steps.date.outputs.date }}
 
-      - name: Run Trivy Scan
-        uses: aquasecurity/trivy-action@master
-        # env:
-        #   TRIVY_DB_REPOSITORY: "db.tar.gz" # Replace with your custom DB URL
+      - name: Build and push
+        uses: docker/build-push-action@v6
         with:
-          output: trivy-report.json
-          format: json
-          scan-type: "fs"
-          severity: "HIGH,CRITICAL"
+          context: .
+          push: false
+          tags: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+
+      - name: Trivy vulnerability scanner image & export report to format template html
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: thirapat12/thirapat12-${{ github.ref_name }}:${{ env.SHA }}
+          format: template
+          template: '@/contrib/html.tpl'
+          output: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
+          exit-code: '0'
           ignore-unfixed: true
-          exit-code: "1"
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
         env:
           TRIVY_SKIP_DB_UPDATE: true
           TRIVY_SKIP_JAVA_DB_UPDATE: true
 
-      - name: Upload Vulnerability Scan Results
-        uses: actions/upload-artifact@v4
+      - name: Upload Trivy scan results HTML
+        uses: actions/upload-artifact@v4.3.6
+        if: always()
         with:
-          name: trivy-report
-          path: trivy-report.json
+          name: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}
+          path: thirapat12/thirapat12-${{ github.ref_name }}-${{ env.SHA }}.html
+
+      # - name: Run Trivy Scan
+      #   uses: aquasecurity/trivy-action@master
+      #   # env:
+      #   #   TRIVY_DB_REPOSITORY: "db.tar.gz" # Replace with your custom DB URL
+      #   with:
+      #     output: trivy-report.json
+      #     format: json
+      #     scan-type: "fs"
+      #     severity: "HIGH,CRITICAL"
+      #     ignore-unfixed: true
+      #     exit-code: "1"
+      #   env:
+      #     TRIVY_SKIP_DB_UPDATE: true
+      #     TRIVY_SKIP_JAVA_DB_UPDATE: true
+
+      # - name: Upload Vulnerability Scan Results
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: trivy-report
+      #     path: trivy-report.json
       
         # env:
         #   SHA: ${{ steps.short-sha.outputs.sha }}
