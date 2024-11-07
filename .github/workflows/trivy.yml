@@ -97,11 +97,11 @@ jobs:
           tar -xzf javadb.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/java-db
           rm javadb.tar.gz
 
-      - name: Cache DBs
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ github.workspace }}/.cache/trivy
-          key: cache-trivy-${{ steps.date.outputs.date }}
+      # - name: Cache DBs
+      #   uses: actions/cache/save@v4
+      #   with:
+      #     path: ${{ github.workspace }}/.cache/trivy
+      #     key: cache-trivy-${{ steps.date.outputs.date }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -118,7 +118,7 @@ jobs:
           template: '@/contrib/html.tpl'
           output: thirapat12/thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
-          cache-dir: $GITHUB_WORKSPACE/.cache/trivy
+          cache-dir: ${{ github.workspace }}/.cache/trivy
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
