@@ -127,10 +127,10 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-        env:
-          TRIVY_SKIP_DB_UPDATE: true
-          TRIVY_SKIP_JAVA_DB_UPDATE: true
-          TRIVY_CACHE_DIR: .trivy
+        # env:
+        #   TRIVY_SKIP_DB_UPDATE: true
+        #   TRIVY_SKIP_JAVA_DB_UPDATE: true
+        #   TRIVY_CACHE_DIR: .trivy
         #   # TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/db
         #   # TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/java-db
 
