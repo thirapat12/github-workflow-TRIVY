@@ -97,11 +97,11 @@ jobs:
           tar -xzf javadb.tar.gz -C cache/trivy/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
 
-      - name: Cache DBs
-        uses: actions/cache@v3
-        with:
-          path: cache/trivy
-          key: cache-trivy
+      # - name: Cache DBs
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: cache/trivy
+      #     key: cache-trivy
 
       # - name: Trivy Cache
       #   uses: yogeshlonkar/trivy-cache-action@v0
@@ -134,13 +134,32 @@ jobs:
         #   # TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/db
         #   # TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/java-db
 
-
       - name: Upload Trivy scan results HTML
         uses: actions/upload-artifact@v4.3.6
-        if: always()
+        # if: always()
         with:
           name: thirapat12-${{ github.ref_name }}
           path: thirapat12-${{ github.ref_name }}.html
+
+      - name: Trivy vulnerability scanner image & export report to format template sarif 
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: thirapat12/thirapat12:${{ github.ref_name }}
+          format: 'sarif'
+          output: thirapat12-${{ github.ref_name }}.sarif
+          exit-code: '1'
+          cache-dir: cache/trivy
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+        env:
+          TRIVY_SKIP_DB_UPDATE: true
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: thirapat12-${{ github.ref_name }}.sarif
 
       # - name: Run Trivy Scan
       #   uses: aquasecurity/trivy-action@master
