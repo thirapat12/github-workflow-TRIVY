@@ -139,8 +139,8 @@ jobs:
         uses: actions/upload-artifact@v4.3.6
         if: always()
         with:
-          name: thirapat12/thirapat12-${{ github.ref_name }}
-          path: thirapat12/thirapat12-${{ github.ref_name }}.html
+          name: thirapat12-${{ github.ref_name }}
+          path: thirapat12-${{ github.ref_name }}.html
 
       # - name: Run Trivy Scan
       #   uses: aquasecurity/trivy-action@master
