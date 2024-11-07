@@ -128,8 +128,8 @@ jobs:
           TRIVY_CACHE_DIR: $GITHUB_WORKSPACE/.cache/trivy
           # TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy
           # TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy
-          # TRIVY_SKIP_DB_UPDATE: true
-          # TRIVY_SKIP_JAVA_DB_UPDATE: true
+          TRIVY_SKIP_DB_UPDATE: true
+          TRIVY_SKIP_JAVA_DB_UPDATE: true
 
       - name: Upload Trivy scan results HTML
         uses: actions/upload-artifact@v4.3.6

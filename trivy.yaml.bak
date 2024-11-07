@@ -10,7 +10,7 @@ db:
   #  - ghcr.io/aquasecurity/trivy-java-db:1
 
   # # Same as '--skip-java-db-update'
-  # java-skip-update: false
+  java-skip-update: true
 
   # # Same as '--no-progress'
   # no-progress: false
@@ -20,4 +20,4 @@ db:
   #  - ghcr.io/aquasecurity/trivy-db:2
 
   # Same as '--skip-db-update'
-  skip-update: false
+  skip-update: true
