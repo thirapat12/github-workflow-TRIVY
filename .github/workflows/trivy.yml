@@ -97,11 +97,11 @@ jobs:
           tar -xzf javadb.tar.gz -C cache/trivy/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
 
-      # - name: Cache DBs
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: cache/trivy
-      #     key: cache-trivy
+      - name: Cache DBs
+        uses: actions/cache@v3
+        with:
+          path: ./cache/trivy
+          key: ${{ runner.os }}-trivy
 
       # - name: Trivy Cache
       #   uses: yogeshlonkar/trivy-cache-action@v0
@@ -136,13 +136,6 @@ jobs:
         with:
           name: thirapat12-${{ github.ref_name }}
           path: thirapat12-${{ github.ref_name }}.html
-
-      - name: Install Trivy
-        uses: aquasecurity/setup-trivy@v0.2.2
-        with:
-          version: v0.56.
-          cache: true
-          path: cache/trivy
 
       - name: Trivy vulnerability scanner image & export report to format template sarif 
         uses: aquasecurity/trivy-action@0.24.0
