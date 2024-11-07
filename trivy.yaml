@@ -1,0 +1,23 @@
+db:
+  # # Same as '--download-java-db-only'
+  # download-java-only: false
+
+  # # Same as '--download-db-only'
+  # download-only: false
+
+  # # Same as '--java-db-repository'
+  # java-repository:
+  #  - ghcr.io/aquasecurity/trivy-java-db:1
+
+  # # Same as '--skip-java-db-update'
+  # java-skip-update: false
+
+  # # Same as '--no-progress'
+  # no-progress: false
+
+  # # Same as '--db-repository'
+  # repository:
+  #  - ghcr.io/aquasecurity/trivy-db:2
+
+  # Same as '--skip-db-update'
+  skip-update: false
