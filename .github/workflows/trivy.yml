@@ -118,13 +118,14 @@ jobs:
           template: '@/contrib/html.tpl'
           output: thirapat12/thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
-          cache-dir: ${{ github.workspace }}/.cache/trivy
+          cache-dir: '$GITHUB_WORKSPACE/.cache/trivy/'
+          trivy-config: 'trivy.yaml'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
         env:
-          TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy
-          TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy
+          # TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy
+          # TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy
           # TRIVY_SKIP_DB_UPDATE: true
           # TRIVY_SKIP_JAVA_DB_UPDATE: true
 
