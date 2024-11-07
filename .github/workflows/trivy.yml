@@ -121,7 +121,7 @@ jobs:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
           format: template
           template: '@/contrib/html.tpl'
-          output: thirapat12/thirapat12-${{ github.ref_name }}.html
+          output: thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
           cache-dir: cache/trivy
           ignore-unfixed: true
