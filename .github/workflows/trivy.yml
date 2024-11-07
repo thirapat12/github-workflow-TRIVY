@@ -79,11 +79,19 @@ jobs:
       - name: Setup oras
         uses: oras-project/setup-oras@v1
 
-      # - name: Get current date
-      #   id: date
-      #   run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Cache DBs
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: cache/trivy
+          key: cache
 
       - name: Download and extract the vulnerability DB
+        if : steps.cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p cache/trivy/db
           oras pull ghcr.io/aquasecurity/trivy-db:2
@@ -91,22 +99,12 @@ jobs:
           rm db.tar.gz
 
       - name: Download and extract the Java DB
+        if : steps.cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p cache/trivy/java-db
           oras pull ghcr.io/aquasecurity/trivy-java-db:1
           tar -xzf javadb.tar.gz -C cache/trivy/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
-
-      - name: Cache DBs
-        uses: actions/cache@v3
-        with:
-          path: ./cache/trivy
-          key: ${{ runner.os }}-trivy
-
-      # - name: Trivy Cache
-      #   uses: yogeshlonkar/trivy-cache-action@v0
-      #   with:
-      #     gh-token: ${{ secrets.GH_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
