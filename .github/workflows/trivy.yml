@@ -85,22 +85,22 @@ jobs:
 
       - name: Download and extract the vulnerability DB
         run: |
-          mkdir -p $GITHUB_WORKSPACE/.cache/trivy/db
+          mkdir -p .cache/trivy/db
           oras pull ghcr.io/aquasecurity/trivy-db:2
-          tar -xzf db.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/db
+          tar -xzf db.tar.gz -C .cache/trivy/db
           rm db.tar.gz
 
       - name: Download and extract the Java DB
         run: |
-          mkdir -p $GITHUB_WORKSPACE/.cache/trivy/java-db
+          mkdir -p .cache/trivy/java-db
           oras pull ghcr.io/aquasecurity/trivy-java-db:1
-          tar -xzf javadb.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/java-db
+          tar -xzf javadb.tar.gz -C .cache/trivy/java-db
           rm javadb.tar.gz
 
       - name: Cache DBs
         uses: actions/cache@v3
         with:
-          path: ${{ github.workspace }}/.cache/trivy
+          path: .cache/trivy
           key: cache-trivy-${{ steps.date.outputs.date }}
 
       - name: Build and push
@@ -119,17 +119,17 @@ jobs:
           template: '@/contrib/html.tpl'
           output: thirapat12/thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
-          cache-dir: $GITHUB_WORKSPACE/.cache/trivy
-          trivy-config: 'trivy.yaml'
+          cache-dir: .cache/trivy
+          # trivy-config: 'trivy.yaml'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-        # env:
+        env:
         # #   TRIVY_CACHE_DIR: $GITHUB_WORKSPACE/.cache/trivy
         #   # TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/db
         #   # TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/java-db
-        #   TRIVY_SKIP_DB_UPDATE: true
-        #   TRIVY_SKIP_JAVA_DB_UPDATE: true
+          TRIVY_SKIP_DB_UPDATE: true
+          TRIVY_SKIP_JAVA_DB_UPDATE: true
 
       - name: Upload Trivy scan results HTML
         uses: actions/upload-artifact@v4.3.6
