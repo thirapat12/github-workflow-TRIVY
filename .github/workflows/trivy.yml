@@ -97,11 +97,11 @@ jobs:
           tar -xzf javadb.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/java-db
           rm javadb.tar.gz
 
-      # - name: Cache DBs
-      #   uses: actions/cache/save@v4
-      #   with:
-      #     path: ${{ github.workspace }}/.cache/trivy
-      #     key: cache-trivy-${{ steps.date.outputs.date }}
+      - name: Cache DBs
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/.cache/trivy
+          key: cache-trivy-${{ steps.date.outputs.date }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -114,22 +114,22 @@ jobs:
         uses: aquasecurity/trivy-action@0.24.0
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
-          args: '--skip-update'
+          # args: '--skip-update'
           format: template
           template: '@/contrib/html.tpl'
           output: thirapat12/thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
-          # cache-dir: '$GITHUB_WORKSPACE/.cache/trivy'
+          cache-dir: $GITHUB_WORKSPACE/.cache/trivy
           # trivy-config: 'trivy.yaml'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-        env:
-          TRIVY_CACHE_DIR: $GITHUB_WORKSPACE/.cache/trivy
-          TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/db
-          TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/java-db
-          TRIVY_SKIP_DB_UPDATE: true
-          TRIVY_SKIP_JAVA_DB_UPDATE: true
+        # env:
+        #   TRIVY_CACHE_DIR: $GITHUB_WORKSPACE/.cache/trivy
+          # TRIVY_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/db
+          # TRIVY_JAVA_DB_REPOSITORY: ${{ github.workspace }}/.cache/trivy/java-db
+          # TRIVY_SKIP_DB_UPDATE: true
+          # TRIVY_SKIP_JAVA_DB_UPDATE: true
 
       - name: Upload Trivy scan results HTML
         uses: actions/upload-artifact@v4.3.6
