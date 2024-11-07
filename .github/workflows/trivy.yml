@@ -76,34 +76,34 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
         
-      # - name: Setup oras
-      #   uses: oras-project/setup-oras@v1
+      - name: Setup oras
+        uses: oras-project/setup-oras@v1
 
-      # - name: Cache Trivy DBs
-      #   id: cache-trivy
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: cache/trivy
-      #     key: trivy-cache-${{ runner.os }}-${{ github.sha }}
-      #     restore-keys: |
-      #       trivy-cache-${{ runner.os }}-
-      #       trivy-cache-
+      - name: Cache Trivy DBs
+        id: cache-trivy
+        uses: actions/cache@v3
+        with:
+          path: cache/trivy
+          key: trivy-cache-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            trivy-cache-${{ runner.os }}-
+            trivy-cache-
 
-      # - name: Download and extract the vulnerability DB
-      #   if: steps.cache-trivy.outputs.cache-hit != 'true'
-      #   run: |
-      #     mkdir -p cache/trivy/db
-      #     oras pull ghcr.io/aquasecurity/trivy-db:2
-      #     tar -xzf db.tar.gz -C cache/trivy/db metadata.json trivy.db
-      #     rm db.tar.gz
+      - name: Download and extract the vulnerability DB
+        if: steps.cache-trivy.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p cache/trivy/db
+          oras pull ghcr.io/aquasecurity/trivy-db:2
+          tar -xzf db.tar.gz -C cache/trivy/db metadata.json trivy.db
+          rm db.tar.gz
 
-      # - name: Download and extract the Java DB
-      #   if: steps.cache-trivy.outputs.cache-hit != 'true'
-      #   run: |
-      #     mkdir -p cache/trivy/java-db
-      #     oras pull ghcr.io/aquasecurity/trivy-java-db:1
-      #     tar -xzf javadb.tar.gz -C cache/trivy/java-db metadata.json trivy-java.db
-      #     rm javadb.tar.gz
+      - name: Download and extract the Java DB
+        if: steps.cache-trivy.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p cache/trivy/java-db
+          oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          tar -xzf javadb.tar.gz -C cache/trivy/java-db metadata.json trivy-java.db
+          rm javadb.tar.gz
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -120,14 +120,14 @@ jobs:
           template: '@/contrib/html.tpl'
           output: thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
-          # cache-dir: cache/trivy
+          cache-dir: cache/trivy
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
         env:
-          TRIVY_AUTH_URL: "https://ghcr.io"
-          TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
-          # TRIVY_SKIP_DB_UPDATE: ${{ steps.cache-trivy.outputs.cache-hit == 'true' && 'true' || '' }}
+          # TRIVY_AUTH_URL: "https://ghcr.io"
+          # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
+          TRIVY_SKIP_DB_UPDATE: ${{ steps.cache-trivy.outputs.cache-hit == 'true' && 'true' || '' }}
 
       - name: Upload Trivy scan results HTML
         uses: actions/upload-artifact@v4.3.6
@@ -142,14 +142,14 @@ jobs:
           format: 'sarif'
           output: thirapat12-${{ github.ref_name }}.sarif
           exit-code: '0'
-          # cache-dir: cache/trivy
+          cache-dir: cache/trivy
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
         env:
-          TRIVY_AUTH_URL: "https://ghcr.io"
-          TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
-          # TRIVY_SKIP_DB_UPDATE: ${{ steps.cache-trivy.outputs.cache-hit == 'true' && 'true' || '' }}
+          # TRIVY_AUTH_URL: "https://ghcr.io"
+          # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
+          TRIVY_SKIP_DB_UPDATE: true
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
