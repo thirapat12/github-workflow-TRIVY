@@ -114,37 +114,14 @@ jobs:
           push: false
           tags: thirapat12/thirapat12:${{ github.ref_name }}
 
-      # - name: Trivy vulnerability scanner image & export report to format template HTML
-      #   # if: steps.cache.outputs.cache-hit != 'true'
-      #   uses: aquasecurity/trivy-action@0.24.0
-      #   with:
-      #     image-ref: thirapat12/thirapat12:${{ github.ref_name }}
-      #     format: template
-      #     template: '@/contrib/html.tpl'
-      #     output: thirapat12-${{ github.ref_name }}.html
-      #     exit-code: '0'
-      #     cache-dir: cache/trivy
-      #     ignore-unfixed: true
-      #     vuln-type: 'os,library'
-      #     severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-      #   env:
-      #     # TRIVY_AUTH_URL: "https://ghcr.io"
-      #     # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
-      #     TRIVY_SKIP_DB_UPDATE: true
-
-      # - name: Upload Trivy scan results HTML
-      #   uses: actions/upload-artifact@v4.3.6
-      #   with:
-      #     name: thirapat12-${{ github.ref_name }}
-      #     path: thirapat12-${{ github.ref_name }}.html
-
-      - name: Trivy vulnerability scanner image & export report to format template SARIF
-        # if: steps.cache.outputs.cache-hit != 'true'
+      - name: Trivy vulnerability scanner image & export report to format template HTML
+        if: steps.cache.outputs.cache-hit != 'true'
         uses: aquasecurity/trivy-action@0.24.0
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
-          format: 'sarif'
-          output: thirapat12.sarif
+          format: template
+          template: '@/contrib/html.tpl'
+          output: thirapat12-${{ github.ref_name }}.html
           exit-code: '0'
           cache-dir: cache/trivy
           ignore-unfixed: true
@@ -155,11 +132,35 @@ jobs:
           # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
           TRIVY_SKIP_DB_UPDATE: true
 
+      - name: Upload Trivy scan results HTML
+        uses: actions/upload-artifact@v4.3.6
+        with:
+          name: thirapat12-${{ github.ref_name }}
+          path: thirapat12-${{ github.ref_name }}.html
+
+      - name: Trivy vulnerability scanner image & export report to format template SARIF
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: thirapat12/thirapat12:${{ github.ref_name }}
+          format: 'sarif'
+          output: thirapat12-${{ github.ref_name }}.sarif
+          exit-code: '0'
+          cache-dir: cache/trivy
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+          skip-setup-trivy: true
+        env:
+          # TRIVY_AUTH_URL: "https://ghcr.io"
+          # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
+          TRIVY_SKIP_DB_UPDATE: true
+
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         # if: always()
         with:
-          sarif_file: thirapat12.sarif
+          sarif_file: thirapat12-${{ github.ref_name }}.sarif
         
       # # - name: Get current date
       # #   id: date
