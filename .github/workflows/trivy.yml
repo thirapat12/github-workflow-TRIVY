@@ -132,14 +132,14 @@ jobs:
       #     # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
       #     TRIVY_SKIP_DB_UPDATE: true
 
-      - name: Upload Trivy scan results HTML
-        uses: actions/upload-artifact@v4.3.6
-        with:
-          name: thirapat12-${{ github.ref_name }}
-          path: thirapat12-${{ github.ref_name }}.html
+      # - name: Upload Trivy scan results HTML
+      #   uses: actions/upload-artifact@v4.3.6
+      #   with:
+      #     name: thirapat12-${{ github.ref_name }}
+      #     path: thirapat12-${{ github.ref_name }}.html
 
       - name: Trivy vulnerability scanner image & export report to format template SARIF
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         uses: aquasecurity/trivy-action@0.24.0
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
