@@ -144,7 +144,7 @@ jobs:
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
           format: 'sarif'
-          output: thirapat12-${{ github.ref_name }}.sarif
+          output: thirapat12.sarif
           exit-code: '0'
           cache-dir: cache/trivy
           ignore-unfixed: true
@@ -157,9 +157,9 @@ jobs:
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
-        if: always()
+        # if: always()
         with:
-          sarif_file: thirapat12-${{ github.ref_name }}.sarif
+          sarif_file: thirapat12.sarif
         
       # # - name: Get current date
       # #   id: date
