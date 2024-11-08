@@ -99,10 +99,10 @@ jobs:
         with:
           path: cache/trivy
           key: | 
-            trivy-${{ runner.os }}-trivy-db-${{ hashFiles('**/metadata.json') }}
-            trigy-${{ runner.os }}-trivy-db-${{ hashFiles('**/trivy.db') }}
-            trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('**/metadata.json') }}
-            trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('**/trivy-java.db') }}
+            trivy-${{ runner.os }}-trivy-db-${{ hashFiles('cache/trivy/db/trivy.db') }}
+            trivy-${{ runner.os }}-trivy-db-${{ hashFiles('cache/trivy/db/metadata.json') }}
+            trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('cache/trivy/java-db/trivy-java.db') }}
+            trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('cache/trivy/java-db/metadata.json') }}
           restore-keys: |
             trivy-${{ runner.os }}-trivy-db-
             trivy-${{ runner.os }}-trivy-java-db-
