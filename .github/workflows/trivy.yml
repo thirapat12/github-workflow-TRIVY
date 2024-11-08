@@ -103,9 +103,6 @@ jobs:
             trivy-${{ runner.os }}-trivy-db-${{ hashFiles('cache/trivy/db/metadata.json') }}
             trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('cache/trivy/java-db/trivy-java.db') }}
             trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('cache/trivy/java-db/metadata.json') }}
-          restore-keys: |
-            trivy-${{ runner.os }}-trivy-db-
-            trivy-${{ runner.os }}-trivy-java-db-
 
       - name: Build and push
         uses: docker/build-push-action@v6
