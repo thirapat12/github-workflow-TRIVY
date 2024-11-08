@@ -79,18 +79,7 @@ jobs:
       - name: Setup oras
         uses: oras-project/setup-oras@v1
 
-      - name: Cache Trivy DBs
-        id: cache-trivy
-        uses: actions/cache@v3
-        with:
-          path: cache/trivy
-          key: trivy-cache-${{ runner.os }}-${{ github.sha }}
-          restore-keys: |
-            trivy-cache-${{ runner.os }}-
-            trivy-cache-
-
       - name: Download and extract the vulnerability DB
-        if: steps.cache-trivy.outputs.cache-hit != 'true'
         run: |
           mkdir -p cache/trivy/db
           oras pull ghcr.io/aquasecurity/trivy-db:2
@@ -98,12 +87,25 @@ jobs:
           rm db.tar.gz
 
       - name: Download and extract the Java DB
-        if: steps.cache-trivy.outputs.cache-hit != 'true'
         run: |
           mkdir -p cache/trivy/java-db
           oras pull ghcr.io/aquasecurity/trivy-java-db:1
           tar -xzf javadb.tar.gz -C cache/trivy/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
+
+      - name: Cache Trivy DBs
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: cache/trivy
+          key: | 
+            trivy-${{ runner.os }}-trivy-db-${{ hashFiles('**/metadata.json') }}
+            trigy-${{ runner.os }}-trivy-db-${{ hashFiles('**/trivy.db') }}
+            trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('**/metadata.json') }}
+            trivy-${{ runner.os }}-trivy-java-db-${{ hashFiles('**/trivy-java.db') }}
+          restore-keys: |
+            trivy-${{ runner.os }}-trivy-db-
+            trivy-${{ runner.os }}-trivy-java-db-
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -113,6 +115,7 @@ jobs:
           tags: thirapat12/thirapat12:${{ github.ref_name }}
 
       - name: Trivy vulnerability scanner image & export report to format template HTML
+        if: steps.cache.outputs.cache-hit != 'true'
         uses: aquasecurity/trivy-action@0.24.0
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
@@ -127,7 +130,7 @@ jobs:
         env:
           # TRIVY_AUTH_URL: "https://ghcr.io"
           # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
-          TRIVY_SKIP_DB_UPDATE: ${{ steps.cache-trivy.outputs.cache-hit == 'true' && 'true' || '' }}
+          TRIVY_SKIP_DB_UPDATE: true
 
       - name: Upload Trivy scan results HTML
         uses: actions/upload-artifact@v4.3.6
@@ -136,6 +139,7 @@ jobs:
           path: thirapat12-${{ github.ref_name }}.html
 
       - name: Trivy vulnerability scanner image & export report to format template SARIF
+        if: steps.cache.outputs.cache-hit != 'true'
         uses: aquasecurity/trivy-action@0.24.0
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
@@ -149,7 +153,7 @@ jobs:
         env:
           # TRIVY_AUTH_URL: "https://ghcr.io"
           # TRIVY_TOKEN: ${{ secrets.GH_TOKEN }}
-          TRIVY_SKIP_DB_UPDATE: ${{ steps.cache-trivy.outputs.cache-hit == 'true' }}
+          TRIVY_SKIP_DB_UPDATE: true
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
