@@ -115,7 +115,7 @@ jobs:
           tags: thirapat12/thirapat12:${{ github.ref_name }}
 
       - name: Trivy vulnerability scanner image & export report to format template HTML
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         uses: aquasecurity/trivy-action@0.24.0
         with:
           image-ref: thirapat12/thirapat12:${{ github.ref_name }}
