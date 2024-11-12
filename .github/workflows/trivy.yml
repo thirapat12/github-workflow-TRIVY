@@ -99,7 +99,7 @@ jobs:
           PAT="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
           URL="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
           curl -L -H "Authorization: token $PAT" -H "Accept: application/octet-stream" "$URL" -o "$FILENAME"
-          FILENAME="java-db.tar.gz"
+          FILENAME="javadb.tar.gz"
           tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
 
