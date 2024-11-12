@@ -82,10 +82,10 @@ jobs:
       - name: Download and extract the vulnerability DB
         run: |
           mkdir -p .trivycache/db
-          PAT="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
-          URL="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830322"
-          FILENAME="db.tar.gz"
-          curl -L -H "Authorization: token $PAT" -H "Accept: application/octet-stream" "$URL" -o "$FILENAME"
+          PATDB="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
+          URLDB="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830322"
+          FILENAMEDB="db.tar.gz"
+          curl -L -H "Authorization: token $PATDB" -H "Accept: application/octet-stream" "$URLDB" -o "$FILENAMEDB"
           tar -xzf db.tar.gz -C .trivycache/db metadata.json trivy.db
           rm db.tar.gz
         
@@ -96,10 +96,10 @@ jobs:
       - name: Download and extract the Java DB
         run: |
           mkdir -p .trivycache/java-db
-          PAT="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
-          URL="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
-          curl -L -H "Authorization: token $PAT" -H "Accept: application/octet-stream" "$URL" -o "$FILENAME"
-          FILENAME="javadb.tar.gz"
+          PATJAVA="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
+          URLJAVA="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
+          curl -L -H "Authorization: token $PATJAVA" -H "Accept: application/octet-stream" "$URLJAVA" -o "$FILENAMEJAVA"
+          FILENAMEJAVA="javadb.tar.gz"
           tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
 
