@@ -96,16 +96,35 @@ jobs:
       - name: Download and extract the Java DB
         run: |
           mkdir -p .trivycache/java-db
-          PATJAVA="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
-          URLJAVA="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
-          curl -L -H "Authorization: token $PATJAVA" -H "Accept: application/octet-stream" "$URLJAVA" -o "$FILENAMEJAVA"
-          FILENAMEJAVA="javadb.tar.gz"
-          tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
-          rm javadb.tar.gz
+          PAT="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
+          URL="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
+          FILENAME="javadb.tar.gz"
 
-          # oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          curl -L -H "Authorization: token $PAT" -H "Accept: application/octet-stream" "$URL" -o "$FILENAME"
+          if [ $? -ne 0 ]; then
+              echo "Error: Failed to download file"
+              exit 1
+          fi
+
+          tar -xzf "$FILENAME" -C .trivycache/java-db metadata.json trivy-java.db
+          if [ $? -ne 0 ]; then
+              echo "Error: Failed to extract tar.gz file"
+              exit 1
+          fi
+
+          rm "$FILENAME"
+
+          # mkdir -p .trivycache/java-db
+          # PATJAVA="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
+          # URLJAVA="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
+          # curl -L -H "Authorization: token $PATJAVA" -H "Accept: application/octet-stream" "$URLJAVA" -o "$FILENAMEJAVA"
+          # FILENAMEJAVA="javadb.tar.gz"
           # tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
           # rm javadb.tar.gz
+
+          # # oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          # # tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
+          # # rm javadb.tar.gz
 
       # - name: Cache Trivy DBs
       #   id: cache
