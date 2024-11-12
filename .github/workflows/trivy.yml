@@ -82,16 +82,30 @@ jobs:
       - name: Download and extract the vulnerability DB
         run: |
           mkdir -p .trivycache/db
-          oras pull ghcr.io/aquasecurity/trivy-db:2
+          PAT="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
+          URL="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830322"
+          FILENAME="db.tar.gz"
+          curl -L -H "Authorization: token $PAT" -H "Accept: application/octet-stream" "$URL" -o "$FILENAME"
           tar -xzf db.tar.gz -C .trivycache/db metadata.json trivy.db
           rm db.tar.gz
+        
+          # oras pull ghcr.io/aquasecurity/trivy-db:2
+          # tar -xzf db.tar.gz -C .trivycache/db metadata.json trivy.db
+          # rm db.tar.gz
 
       - name: Download and extract the Java DB
         run: |
           mkdir -p .trivycache/java-db
-          oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          PAT="${{ secrets.GH_TOKEN_TRIVY_DB }}"  # Replace with your GitHub Personal Access Token
+          URL="https://api.github.com/repos/corp-ais/trivy-db/releases/assets/205830357"
+          curl -L -H "Authorization: token $PAT" -H "Accept: application/octet-stream" "$URL" -o "$FILENAME"
+          FILENAME="java-db.tar.gz"
           tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
           rm javadb.tar.gz
+
+          # oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          # tar -xzf javadb.tar.gz -C .trivycache/java-db metadata.json trivy-java.db
+          # rm javadb.tar.gz
 
       # - name: Cache Trivy DBs
       #   id: cache
